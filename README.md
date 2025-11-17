@@ -8,7 +8,9 @@
 
 ---
 
-### 📚 Curso: **Engenharia de Software** ### 🖥️ Disciplina: **Análise de Complexidade de Algoritmos** ### 👨‍🎓 Autor: **Matheus Beiruth**
+### 📚 Curso: **Engenharia de Software** 
+### 🖥️ Disciplina: **Análise de Complexidade de Algoritmos** 
+### 👨‍🎓 Autor: **Matheus Beiruth**
 
 ---
 
