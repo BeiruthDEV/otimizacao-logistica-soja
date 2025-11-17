@@ -8,23 +8,20 @@
 
 ---
 
-### 📚 Curso: **Engenharia de Software**  
-### 🖥️ Disciplina: **Analise Complexidade de Algoritmos**  
-### 👨‍🎓 Autor: **Matheus Beiruth**
+### 📚 Curso: **Engenharia de Software** ### 🖥️ Disciplina: **Análise de Complexidade de Algoritmos** ### 👨‍🎓 Autor: **Matheus Beiruth**
 
 ---
 
-
-
-
-
 # Otimização Logística: Escoamento de Soja (MT) 🚛 🇧🇷
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![NetworkX](https://img.shields.io/badge/Library-NetworkX-green)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python)
+![NetworkX](https://img.shields.io/badge/NetworkX-Graph%20Theory-green?style=for-the-badge)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Data%20Viz-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Concluído-brightgreen?style=for-the-badge)
 
-> Uma abordagem baseada em Teoria dos Grafos para análise de robustez e custos na malha logística do agronegócio brasileiro.
+> **Simulação Estratégica de Escoamento de Safra (Mato Grosso)**: Uma abordagem baseada em Teoria dos Grafos para análise de resiliência, cálculo de frete multimodal e gestão de crises em tempo real.
+
+---
 
 ## 📖 Sobre o Projeto
 
@@ -32,19 +29,56 @@ Este projeto modela a rede de distribuição de soja partindo de **Sorriso (MT)*
 
 Diferente de implementações genéricas, este software simula cenários de **falha na infraestrutura crítica** (ex: bloqueio da BR-163), quantificando o impacto financeiro da falta de redundância na malha rodoviária brasileira.
 
-### 🎯 Objetivos Técnicos
-* **Modelagem de Grafo Direcionado (Digraph):** Representação de cidades como vértices e rodovias como arestas ponderadas.
-* **Algoritmo de Caminho Mínimo Customizado:** Implementação manual da lógica de busca e acumulação de custos (sem dependência de "caixa preta" como `dijkstra` pronto), iterando sobre todas as rotas simples.
-* **Análise de Robustez (Resiliência):** Simulação de remoção de arestas críticas em tempo de execução para avaliar o comportamento da rede sob estresse.
+---
+
+## 📊 Dashboard Executivo (Visão Comparativa)
+
+O sistema gera uma matriz de decisão 2x2 comparando quatro cenários táticos lado a lado, permitindo a análise de sensibilidade financeira.
+
+![Dashboard Comparativo](assets/dashboard.png)
+*(Visualização gerada pelo script `main_dashboard.py` demonstrando a disparidade de custos)*
 
 ---
 
-## 🗺️ Cenários Analisados
+## 📍 Detalhamento dos Cenários (Simulação)
 
-O sistema avalia dois cenários principais:
+O núcleo do projeto (`main.py`) executa uma animação vetorial onde um agente (caminhão) tenta realizar a entrega, reagindo a bloqueios em tempo real.
 
-1.  **Cenário Nominal (Blue Sky):** Todas as rodovias (BR-163 Norte/Sul, BR-364, Ferronorte) estão operacionais. O algoritmo busca o menor custo por tonelada.
-2.  **Cenário de Contingência (Falha Crítica):** Simulação de colapso na rodovia **BR-163 (Trecho Sinop-Miritituba)**. O sistema recalcula a rota viável e apresenta o delta de custo (prejuízo logístico).
+### 1. Melhor Cenário (Eficiência Máxima)
+**Rota:** Sorriso ➔ Sinop ➔ Miritituba (Arco Norte).
+**Status:** ✅ Sucesso Imediato.
+**Custo:** Baixo (R$ 180/ton).
+
+![Cenário 1](assets/cenario_1.png)
+
+### 2. Cenário de Contingência (Falha no Norte)
+**Rota:** Sorriso ➔ Cuiabá ➔ Santos (Corredor Sul).
+**Evento:** Bloqueio na BR-163 Norte. O sistema redireciona para o Sul.
+**Impacto:** Aumento de distância e pedágios.
+
+![Cenário 2](assets/cenario_2.png)
+
+### 3. Cenário Crítico (Falha Norte + Sul)
+**Rota:** Sorriso ➔ Água Boa ➔ Uberaba ➔ Santos (Transversal Leste).
+**Evento:** Colapso nas vias principais. Uso de estradas de terra/precárias.
+**Impacto:** Alto custo de manutenção e tempo.
+
+![Cenário 3](assets/cenario_3.png)
+
+### 4. Pior Cenário (Colapso Sistêmico)
+**Rota:** Sorriso ➔ Campo Novo ➔ Cuiabá ➔ Santos (Rota Oeste).
+**Evento:** "Cascata de Falhas". O caminhão tenta Norte (❌), tenta Sul (❌), tenta Leste (❌) e finalmente consegue pelo Oeste.
+**Impacto Financeiro:** O custo dobra devido à **Logística Reversa** (viagens perdidas).
+
+![Cenário 4](assets/cenario_4.png)
+
+---
+
+## 🖥️ Relatório de Engenharia (CLI)
+
+Além da interface gráfica, o sistema fornece um log detalhado no terminal, discriminando o **Custo da Rota Final** vs. **Custo do Desperdício** (quilômetros rodados em vão).
+
+![Log do Terminal](assets/terminal_log.png)
 
 ---
 
@@ -52,8 +86,14 @@ O sistema avalia dois cenários principais:
 
 * **Linguagem:** Python 3.x
 * **Core:** `NetworkX` (Estrutura de dados de grafos)
-* **Visualização:** `Matplotlib` (Plotagem da rede geográfica)
+* **Visualização:** `Matplotlib` (Plotagem da rede geográfica e animação)
 * **Paradigma:** Programação Orientada a Objetos (POO)
+
+### Arquitetura do Código
+O projeto está estruturado na classe `SoyLogisticsNet`, que encapsula:
+* `construir_cenario_padrao()`: Definição dos vértices e arestas com metadados (Km, Custo, Tipo de Via).
+* `buscar_melhor_rota()`: Algoritmo de caminho mínimo customizado.
+* `animar_multiplas_tentativas()`: Motor de simulação que gerencia a lógica de falha e redirecionamento visual.
 
 ---
 
@@ -69,8 +109,7 @@ Certifique-se de ter o **Python 3.8+** e o **pip** instalados.
 git clone [https://github.com/BeiruthDEV/otimizacao-logistica-soja.git](https://github.com/BeiruthDEV/otimizacao-logistica-soja.git)
 cd otimizacao-logistica-soja
 ```
-
-
+### 2. Criar ambiente virtual (Recomendado)
 ```bash
 # Windows
 python -m venv venv
@@ -80,28 +119,24 @@ python -m venv venv
 python3 -m venv venv
 source venv/bin/activate
 ```
+### 3. Instalar dependências
 
 ```bash
-pip install networkx matplotlib
+pip install -r requirements.txt
 ```
 
-📊 Visualização dos Resultados
-Ao executar o script, o software gerará:
+### 4. Executar
+```bash
+python main.py
+  ```
 
-Logs no Console: Detalhamento passo a passo do cálculo de custo de cada rota (Cálculo manual: Aresta A + Aresta B...).
+Para ver o dashboard comparativo (Relatório):
 
-Gráficos (Plot): Janelas interativas mostrando a topologia da rede antes e depois da falha simulada.
+```bash
 
-🧠 Arquitetura do Código
-O projeto está estruturado na classe SoyLogisticsNet, que encapsula:
+python main_dashboard.py
 
-construir_cenario_padrao(): Definição dos vértices e arestas.
+```
 
-_calcular_custo_caminho(): Método protegido que realiza a aritmética de custos (Core da lógica).
-
-simular_falha(): Método que retorna uma nova instância da rede (Deep Copy) com a aresta removida, preservando a integridade dos dados originais.
-
-📝 Licença
+### 📝 Licença
 Distribuído sob a licença MIT. Veja LICENSE para mais informações.
-
-Desenvolvido para a disciplina de Algoritmos e Grafos.
