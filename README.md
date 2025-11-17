@@ -66,7 +66,7 @@ Certifique-se de ter o **Python 3.8+** e o **pip** instalados.
 
 ### 1. Clonar o repositório
 ```bash
-git clone [https://github.com/SEU-USUARIO/otimizacao-logistica-soja.git](https://github.com/SEU-USUARIO/otimizacao-logistica-soja.git)
+git clone [https://github.com/BeiruthDEV/otimizacao-logistica-soja.git](https://github.com/BeiruthDEV/otimizacao-logistica-soja.git)
 cd otimizacao-logistica-soja
 ```
 
