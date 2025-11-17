@@ -1,45 +1,146 @@
 from core import SoyLogisticsNet
+import matplotlib.pyplot as plt
+import time
+
+
+def filtrar_rota_por_inicio(todas_rotas, segundo_no):
+    for item in todas_rotas:
+        caminho = item["caminho"]
+        if len(caminho) > 1 and caminho[1] == segundo_no:
+            return item
+    return None
+
+
+def calcular_custos_detalhados(rede, caminhos_tentados):
+    """
+    Calcula o custo real considerando que nas rotas falhas
+    o caminhão foi até o primeiro trecho e teve que voltar.
+    """
+    custo_desperdicio = 0
+    km_desperdicio = 0
+
+    # Itera sobre todas as tentativas FALHAS (todas menos a última)
+    for caminho in caminhos_tentados[:-1]:
+        # Pega a primeira perna (Origem -> Primeiro Destino)
+        u, v = caminho[0], caminho[1]
+        peso = rede.graph[u][v]["weight"]
+        dist = rede.graph[u][v]["distance"]
+
+        # Soma IDA e VOLTA (x2)
+        custo_desperdicio += peso * 2
+        km_desperdicio += dist * 2
+
+    # Calcula a rota de SUCESSO (A última da lista)
+    rota_final = caminhos_tentados[-1]
+    custo_final = 0
+    km_final = 0
+
+    for i in range(len(rota_final) - 1):
+        u, v = rota_final[i], rota_final[i + 1]
+        custo_final += rede.graph[u][v]["weight"]
+        km_final += rede.graph[u][v]["distance"]
+
+    return {
+        "custo_rota": custo_final,
+        "km_rota": km_final,
+        "custo_erro": custo_desperdicio,
+        "km_erro": km_desperdicio,
+        "custo_total": custo_final + custo_desperdicio,
+        "km_total": km_final + km_desperdicio,
+    }
 
 
 def main():
-    print("--- SISTEMA DE OTIMIZAÇÃO LOGÍSTICA (AGRO V1.0) ---\n")
+    print("\n")
+    print("████████████████████████████████████████████████████████")
+    print("█   AGRO LOGISTICS SYSTEM v11.0 - CUSTO REAL (REAL-LIFE)   █")
+    print("████████████████████████████████████████████████████████")
+    print("")
 
-    # 1. Instanciação do Cenário Base
     rede = SoyLogisticsNet()
     rede.construir_cenario_padrao()
-
     hub_origem = "Sorriso_MT"
-    portos = ["Miritituba_PA", "Santos_SP"]
 
-    # 2. Análise do Cenário Normal
-    # Plota o gráfico e calcula custos
-    rede.visualizar("Cenário 1: Operação Normal (Arco Norte + Sul)")
-    custo_normal = rede.buscar_melhor_rota(hub_origem, portos)
+    print(">>> [SISTEMA] Calculando matriz de custos com fator de retorno...")
+    destinos = ["Miritituba_PA", "Santos_SP", "Santarem_PA"]
+    todas_rotas = rede.obter_todas_rotas(hub_origem, destinos)
 
-    print("\n" + "-" * 50)
-    input("Pressione ENTER para simular a falha na BR-163...")
+    # Rotas base
+    rota_norte = filtrar_rota_por_inicio(todas_rotas, "Sinop_MT")  # R$ 180
+    rota_sul = filtrar_rota_por_inicio(todas_rotas, "Cuiaba_MT")  # R$ 270
+    rota_leste = filtrar_rota_por_inicio(todas_rotas, "Agua_Boa_MT")  # R$ 380
+    rota_oeste = filtrar_rota_por_inicio(todas_rotas, "Campo_Novo_MT")  # R$ 390
 
-    # 3. Simulação de Robustez (Falha Crítica)
-    # Remove a estrada entre Sinop e Miritituba
-    rede_crise = rede.criar_cenario_falha("Sinop_MT", "Miritituba_PA")
+    if not (rota_norte and rota_leste and rota_sul and rota_oeste):
+        print("Erro: Rotas insuficientes.")
+        return
 
-    # 4. Análise do Cenário de Crise
-    rede_crise.visualizar("Cenário 2: Bloqueio da BR-163 (Norte)")
-    custo_crise = rede_crise.buscar_melhor_rota(hub_origem, portos)
+    # Definição dos Cenários
+    cenarios = [
+        {
+            "lista": [rota_norte["caminho"]],
+            "titulo": "1. MELHOR CENÁRIO",
+            "desc": "Sucesso na primeira tentativa.",
+        },
+        {
+            "lista": [rota_norte["caminho"], rota_sul["caminho"]],
+            "titulo": "2. CENÁRIO MEDIANO (1 Erro)",
+            "desc": "Falha no Norte -> Retorno -> Sucesso no Sul.",
+        },
+        {
+            "lista": [
+                rota_norte["caminho"],
+                rota_sul["caminho"],
+                rota_leste["caminho"],
+            ],
+            "titulo": "3. CENÁRIO CRÍTICO (2 Erros)",
+            "desc": "Norte (X) -> Sul (X) -> Leste (OK).",
+        },
+        {
+            "lista": [
+                rota_norte["caminho"],
+                rota_sul["caminho"],
+                rota_leste["caminho"],
+                rota_oeste["caminho"],
+            ],
+            "titulo": "4. PIOR CENÁRIO (Colapso)",
+            "desc": "Três tentativas falhas antes do sucesso no Oeste.",
+        },
+    ]
 
-    # 5. Relatório Final (KPIs)
-    print("\n" + "=" * 30)
-    print(" RELATÓRIO DE ROBUSTEZ")
-    print("=" * 30)
-    if custo_normal != float("inf") and custo_crise != float("inf"):
-        delta = custo_crise - custo_normal
-        percentual = (delta / custo_normal) * 100
-        print(f"Custo Original: R$ {custo_normal:.2f}")
-        print(f"Custo na Crise: R$ {custo_crise:.2f}")
-        print(f"Impacto Financeiro: +{percentual:.1f}% no frete.")
-        print("Conclusão: Alta dependência da rota Norte.")
-    else:
-        print("Sistema entrou em colapso total.")
+    # Loop de Execução
+    for i, cenario in enumerate(cenarios):
+        # Calcula a matemática financeira do cenário
+        dados = calcular_custos_detalhados(rede, cenario["lista"])
+
+        print(f"\n{'='*60}")
+        print(f" {cenario['titulo']}")
+        print(f"{'='*60}")
+        print(f" ESTRATÉGIA: {cenario['desc']}")
+        print(f"{'-'*60}")
+        print(f" [+] Custo da Rota Final:      R$ {dados['custo_rota']:.2f}")
+
+        # Se houve erro, mostra o prejuízo em vermelho (simulado com asteriscos)
+        if dados["custo_erro"] > 0:
+            print(
+                f" [!] Custo de Retorno (Erros): R$ {dados['custo_erro']:.2f}  <-- PREJUÍZO"
+            )
+            print(f" [!] Km Rodados em Vão:        {dados['km_erro']} km")
+
+        print(f"{'-'*60}")
+        print(f" 💰 CUSTO TOTAL REAL:          R$ {dados['custo_total']:.2f} / ton")
+        print(f" 🚛 DISTÂNCIA TOTAL REAL:      {dados['km_total']} km")
+        print(f"{'='*60}")
+
+        input(f"\n>>> ENTER para rodar animação do Cenário {i+1}...")
+
+        # Passa o título já com o valor total para aparecer no gráfico
+        titulo_grafico = f"{cenario['titulo']} (Total: R${dados['custo_total']})"
+        rede.animar_multiplas_tentativas(
+            cenario["lista"], titulo_grafico, cenario["desc"]
+        )
+
+    print("\n--- SIMULAÇÃO CONCLUÍDA ---")
 
 
 if __name__ == "__main__":
