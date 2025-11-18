@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGRO LOGISTICS v12 - Painel Tático</title>
+
+    <!-- Carrega o TailwindCSS (Framework) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Carrega nosso CSS customizado -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <div class="flex h-screen">
+        <!-- Barra Lateral (Inalterada) -->
+        <nav class="w-72 bg-white flex flex-col p-4 shadow-lg border-r border-gray-200 overflow-y-auto">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 border-b border-gray-200 pb-5 px-2">
+                <div class="bg-yellow-400 p-2 rounded-lg shadow-lg">
+                    <!-- Ícone do Caminhão -->
+                    <svg class="w-8 h-8 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h.008M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-3-3H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5v-6.375a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-bold text-gray-900">AGRO LOGISTICS</h1>
+            </div>
+
+            <!-- Itens do Menu (Inalterados) -->
+            <ul class="mt-6 space-y-2">
+                <li>
+                    <button onclick="showView('view-0', this)"
+                        class="menu-item active flex items-center w-full px-4 py-3 rounded-lg text-left text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all">
+                        <svg class="h-5 w-5 mr-3 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM8.94 6.94a.75.75 0 1 1-1.06-1.061l2.5-2.5a.75.75 0 0 1 1.06 0l2.5 2.5a.75.75 0 0 1-1.06 1.061L11 5.691V9.25a.75.75 0 0 1-1.5 0V5.691L8.94 6.94ZM8 10a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 8 10Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Sobre o Projeto
+                    </button>
+                </li>
+                <li class="border-t border-gray-200 my-4"></li>
+                <li class="px-3 py-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">Simulações</li>
+                <li>
+                    <button onclick="showView('view-1', this)"
+                        class="menu-item flex items-center w-full px-4 py-3 rounded-lg text-left text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all">
+                        <svg class="h-5 w-5 mr-3 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Cenário 1 (Ideal)
+                    </button>
+                </li>
+                <li>
+                    <button onclick="showView('view-2', this)"
+                        class="menu-item flex items-center w-full px-4 py-3 rounded-lg text-left text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all">
+                        <svg class="h-5 w-5 mr-3 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M15 15.5a.75.75 0 0 0 .75-.75V7.412a.75.75 0 0 0-.214-.523l-3.38-3.523a.75.75 0 0 0-1.052-.016l-.106.105V12.75A2.75 2.75 0 0 1 8.25 15.5H.75a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 .75-.75Z"
+                                clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M11.214 3.32a.75.75 0 0 0-1.052-.016l-.106.105v5.523l.163.163 3.38-3.523a.75.75 0 0 0-.214-.523L13.5 3.25l-2.286.07Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Cenário 2 (Contingência)
+                    </button>
+                </li>
+                <li>
+                    <button onclick="showView('view-3', this)"
+                        class="menu-item flex items-center w-full px-4 py-3 rounded-lg text-left text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all">
+                        <svg class="h-5 w-5 mr-3 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8.485 2.495c.646-1.119 2.383-1.119 3.03 0l6.294 10.88c.646 1.119-.211 2.508-1.514 2.508H3.705c-1.303 0-2.16-1.39-1.514-2.508l6.294-10.88ZM9 9a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 9 9Zm.75 6a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Cenário 3 (Crítico)
+                    </button>
+                </li>
+                <li>
+                    <button onclick="showView('view-4', this)"
+                        class="menu-item flex items-center w-full px-4 py-3 rounded-lg text-left text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all">
+                        <svg class="h-5 w-5 mr-3 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 1.75c-4.486 0-8.25 3.559-8.25 7.962 0 1.638.508 3.163 1.385 4.47l-.142.142A.75.75 0 0 0 2.25 15h15.5a.75.75 0 0 0 .707-.47l-.142-.142A8.007 8.007 0 0 0 18.25 9.712C18.25 5.31 14.486 1.75 10 1.75ZM9 9a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 9 9Zm.75 6a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Cenário 4 (Colapso)
+                    </button>
+                </li>
+                <li class="border-t border-gray-200 my-4"></li>
+                <li class="px-3 py-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">Análise</li>
+                <li>
+                    <button onclick="showView('view-5', this)"
+                        class="menu-item flex items-center w-full px-4 py-3 rounded-lg text-left text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all">
+                        <svg class="h-5 w-5 mr-3 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M10 3.75a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM10 8.75a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM10 13.75a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0 1.5c4.694 0 8.5-3.806 8.5-8.5S14.694 1 10 1 1.5 4.806 1.5 9.5 5.306 18 10 18Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Dashboard (Comparativo)
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="flex-1 p-6 lg:p-10 overflow-auto">
+
+            <!-- Banner de Header (Fixo) -->
+            <div class="mb-8 p-8 rounded-xl shadow-lg bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+                <h1 class="text-4xl font-bold">Painel de Simulação Logística</h1>
+                <p class="mt-2 text-blue-100">Uma ferramenta de análise de risco e otimização de rotas para o escoamento
+                    da safra brasileira.</p>
+            </div>
+
+            <!-- 
+                ================================================================
+                NOVA VIEW-0 (SOBRE O PROJETO) - VERSÃO CONSULTORIA (AINDA MAIS PROFUNDA)
+                ================================================================
+            -->
+            <div id="view-0" class="view-content">
+
+                <!-- Cards de KPI -->
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">O Dilema Logístico em Números</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div
+                        class="bg-white border border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow">
+                        <h3 class="text-sm font-semibold text-green-600 uppercase tracking-wide">ROTA IDEAL (ARCO NORTE)
+                        </h3>
+                        <p class="mt-2 text-3xl font-extrabold text-gray-900">R$ 180 / ton</p>
+                        <p class="mt-1 text-base text-gray-500">Aprox. 915 km (Sorriso ➔ Miritituba)</p>
+                    </div>
+                    <div
+                        class="bg-white border border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow">
+                        <h3 class="text-sm font-semibold text-yellow-600 uppercase tracking-wide">ROTA TRADICIONAL (SUL)
+                        </h3>
+                        <p class="mt-2 text-3xl font-extrabold text-gray-900">R$ 270 / ton</p>
+                        <p class="mt-1 text-base text-gray-500">Aprox. 1.110 km (Sorriso ➔ Santos, via Cuiabá)</p>
+                    </div>
+                    <div
+                        class="bg-white border border-red-300 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow">
+                        <h3 class="text-sm font-semibold text-red-600 uppercase tracking-wide">CUSTO DO COLAPSO (REAL)
+                        </h3>
+                        <p class="mt-2 text-3xl font-extrabold text-gray-900">R$ 1.500+ / ton</p>
+                        <p class="mt-1 text-base text-gray-500">Prejuízo de 3 falhas + Rota Oeste (Pior Cenário)</p>
+                    </div>
+                </div>
+
+                <!-- Seção 1: O Problema (com imagem) -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8 mb-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-4">O Problema: "Custo Brasil"</h2>
+                            <article class="prose prose-lg max-w-none prose-blue">
+                                <p>Problemática Central:
+                                    O Brasil, apesar de ser um líder mundial na produção de soja, enfrenta um gargalo
+                                    logístico crônico conhecido como "Custo Brasil". O coração produtivo (Mato Grosso)
+                                    está a mais de 1.000 km dos principais portos, tornando o escoamento da safra uma
+                                    operação de alto custo e alto risco.
+
+                                    O Dilema Estratégico (Norte vs. Sul):
+                                    Este projeto modela o principal dilema de decisão logística do agronegócio:
+
+                                    O Arco Norte (Miritituba-PA): A rota geograficamente mais curta e de menor custo
+                                    (menos distância, menos pedágios). No entanto, é uma rota de baixa resiliência,
+                                    historicamente dependente de uma única via (BR-163) vulnerável a bloqueios por
+                                    chuvas e atoleiros.
+
+                                    O Corredor Sul (Santos-SP): A rota tradicional, muito mais longa e cara (devido a
+                                    pedágios e distância). Sua vantagem é a resiliência, por possuir múltiplas rodovias
+                                    duplicadas e o modal ferroviário (Ferronorte).
+
+                                <p>Metodologia (Solução com Grafos):
+                                    Para quantificar esse dilema, a rede logística foi modelada como um Grafo
+                                    Direcionado e Ponderado (DiGraph), utilizando a biblioteca NetworkX (Python).
+
+                                    Vértices: Representam cidades, hubs de transbordo (como Rondonópolis) e portos.
+
+                                    Arestas: Representam os modais (Rodovias e Ferrovias).
+
+                                    Pesos: As arestas possuem múltiplos atributos, incluindo Distância (Km) e, o mais
+                                    importante, o Custo (R$/ton), que é a métrica usada para otimização e considera
+                                    fatores como diesel, pedágio e qualidade da via.
+
+                                    A Inovação (Simulação de Risco Real):
+                                    O diferencial deste projeto não é apenas encontrar o caminho mínimo ideal (Arco
+                                    Norte). A principal inovação é a simulação de uma "Cascata de Falhas" e o cálculo do
+                                    "Custo de Retorno" (Logística Reversa Forçada).
+
+                                    Quando uma rota falha (ex: BR-163 bloqueada), o sistema não apenas recalcula; ele
+                                    simula o caminhão retornando à base (Sorriso) e soma o prejuízo (custo de ida +
+                                    custo de volta do trecho falho) ao custo da próxima tentativa.
+                                </p>
+                                <p>
+                                    Conclusão:
+                                    O software prova matematicamente como uma infraestrutura de baixa resiliência
+                                    (poucas rotas alternativas) transforma um único evento de falha em um prejuízo
+                                    financeiro exponencial, demonstrando por que o "Pior Cenário" (com múltiplas falhas)
+                                    pode dobrar ou triplicar o custo final do frete..</p>
+                                </p>
+                            </article>
+                        </div>
+                        <div>
+                            <img src="https://s01.video.glbimg.com/640x360/5687157.jpg" alt="Caminhão atolado na BR-163"
+                                class="rounded-lg shadow-md w-full h-64 object-cover"
+                                onerror="this.src='https://s01.video.glbimg.com/640x360/5687157.jpg'">
+                            <p class="text-center text-sm text-gray-500 mt-2">O risco real: atoleiros na BR-163 (PA)
+                                podem parar o escoamento por dias.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 2: O Dilema dos Modais (Norte vs. Sul) -->
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">O Dilema Estratégico: Norte vs. Sul</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <!-- Card Arco Norte -->
+                    <div
+                        class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+                        <img src="https://cdn-pen.nuneshost.com/images/191116-hidrovias-do-brasil-estacao-de-transbordo-de-carga-miritituba-fluvial.jpg"
+                            alt="Porto de Miritituba" class="w-full h-56 object-cover"
+                            onerror="this.src='https://placehold.co/600x400/2980B9/white?text=Porto+de+Miritituba+(Barcaças)'">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Opção 1: O Arco Norte (Eficiência)</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                A rota geograficamente mais curta e com menor custo. Utiliza a BR-163 para levar a
+                                carga até portos como Miritituba (PA), onde é transferida para **barcaças** (modal
+                                hidroviário) que descem o Rio Amazonas.
+                            </p>
+                            <ul class="list-disc list-inside mt-4 space-y-1 text-gray-700">
+                                <li><strong>Pró:</strong> Menor custo, menor distância (915 km).</li>
+                                <li><strong>Contra:</strong> Alta dependência da BR-163, vulnerável a chuvas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Card Corredor Sul -->
+                    <div
+                        class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+                        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/01/portosantos.jpg?w=987"
+                            alt="Porto de Santos" class="w-full h-56 object-cover"
+                            onerror="this.src='https://placehold.co/600x400/2C3E50/white?text=Porto+de+Santos+(Ferrovia)'">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Opção 2: O Corredor Sul (Resiliência)</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                A rota tradicional e mais cara. Utiliza rodovias duplicadas (SP-330) e,
+                                crucialmente, a malha ferroviária (Ferronorte)** para chegar ao Porto de Santos (SP),
+                                o maior da América Latina.
+                            </p>
+                            <ul class="list-disc list-inside mt-4 space-y-1 text-gray-700">
+                                <li><strong>Pró:</strong> Alta confiabilidade, múltiplas rotas (resiliência).</li>
+                                <li><strong>Contra:</strong> Custo elevado (pedágios) e maior distância (+1.100 km).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 3: A Solução (Metodologia) -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8">
+                    <!-- 'prose' formata o texto automaticamente -->
+                    <article class="prose prose-lg max-w-none prose-blue">
+                        <h2 class="text-gray-900">Nossa Solução: Teoria dos Grafos Aplicada</h2>
+                        <p>Para modelar e resolver este problema, aplicamos conceitos da disciplina de Análise de
+                            Complexidade de Algoritmos, especificamente a <strong>Teoria dos Grafos</strong>. Utilizamos
+                            a biblioteca <strong>NetworkX</strong> do Python para construir um modelo matemático da rede
+                            logística.</p>
+
+                        <h3>1. Modelagem (O Grafo)</h3>
+                        <p>A rede de estradas e ferrovias foi modelada como um <strong>Grafo Direcionado e Ponderado
+                                (DiGraph)</strong>:</p>
+                        <ul>
+                            <li><strong>Vértices (Nós):</strong> Representam cidades estratégicas (Sorriso, Cuiabá),
+                                hubs de transbordo (Rondonópolis) ou destinos finais (Portos de Santos, Miritituba).
+                            </li>
+                            <li><strong>Arestas (Linhas):</strong> Representam os modais de transporte (Rodovias como
+                                BR-163, Ferrovias como a Ferronorte).</li>
+                            <li><strong>Pesos (Valores):</strong> O ponto crucial. Cada aresta possui múltiplos
+                                atributos que usamos para a tomada de decisão:
+                                <ol>
+                                    <li><strong>Custo (R$/ton):</strong> A métrica principal de otimização.</li>
+                                    <li><strong>Distância (Km):</strong> Informação geográfica real.</li>
+                                    <li><strong>Tipo de Via:</strong> 'road' (Rodovia) ou 'rail' (Ferrovia).</li>
+                                    <li><strong>Info Adicional:</strong> 'Precária', 'Concessionada', 'Não Pavimentada',
+                                        etc.</li>
+                                </ol>
+                            </li>
+                        </ul>
+
+                        <h3>2. O Algoritmo (A Inteligência)</h3>
+                        <p>O desafio não era apenas achar *um* caminho, mas sim **gerenciar falhas**. A solução foi
+                            dividida em duas partes:</p>
+
+                        <h4>A. Cálculo de Caminho Mínimo (Manual)</h4>
+                        <p>Seguindo os requisitos do exercício, não usamos um algoritmo "caixa-preta" como Dijkstra. Em
+                            vez disso, o `core.py` usa `nx.all_simple_paths` para encontrar **todas as rotas possíveis**
+                            de Sorriso a um porto. Em seguida, ele itera (em loop) por cada caminho, somando
+                            "manualmente" os pesos (`weight`) de cada aresta para encontrar o caminho com o menor custo
+                            total.</p>
+
+                        <h4>B. A Simulação de "Cascata de Falhas" (A Inovação)</h4>
+                        <p>Esta é a maior inovação do projeto. Em vez de apenas recalcular a rota, simulamos o **custo
+                            real de uma falha logística**. Quando uma rota falha (ex: BR-163 bloqueada), o sistema
+                            calcula:</p>
+
+                        <p class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg text-lg">
+                            <strong>Custo Real = Custo da Rota Final + (Soma do Custo de Ida e Volta de todas as Rotas
+                                Falhas)</strong>
+                        </p>
+
+                        <p>Isso significa que o caminhão que tenta ir pela BR-163 (Custo R$ 40) e falha, precisa voltar
+                            (mais R$ 40), gerando um prejuízo de **R$ 80** antes mesmo de começar a rota alternativa. É
+                            isso que transforma um frete de R$ 380 em R$ 1.500 no pior cenário.</p>
+
+                    </article>
+                </div>
+            </div>
+
+            <!-- 
+                ================================================================
+                VIEWS 1 A 5 (Simulações e Dashboard) - INALTERADOS
+                ================================================================
+            -->
+
+            <!-- VIEW 1: CENÁRIO IDEAL -->
+            <div id="view-1" class="view-content">
+                <h2 class="text-3xl font-bold text-gray-900">1. Cenário Ideal: Eficiência Máxima</h2>
+                <p class="mt-2 text-lg text-gray-600">Simulação da rota prioritária (Arco Norte). Menor custo e tempo de
+                    trânsito.</p>
+                <div class="mt-6 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                    <video class="w-full rounded-t-lg" src="assets/cenario_1.mp4" autoplay loop muted controls>
+                        <img src="https://placehold.co/1200x800/2c3e50/f1c40f?text=Grave+o+Cenario+1+e+salve+como+%27assets/cenario_1.mp4%27"
+                            alt="Cenário 1">
+                    </video>
+                    <div class="p-5 bg-gray-50 rounded-b-lg border-t border-gray-200">
+                        <h3 class="font-bold text-green-700 text-lg">Análise de Resultado</h3>
+                        <p class="text-green-600">A rota Norte (Sorriso ➔ Miritituba) é concluída com sucesso. Custo de
+                            **R$ 180/ton**.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: CENÁRIO MEDIANO -->
+            <div id="view-2" class="view-content">
+                <h2 class="text-3xl font-bold text-gray-900">2. Cenário de Contingência (1 Falha)</h2>
+                <p class="mt-2 text-lg text-gray-600">Simulação de falha no Arco Norte (❌). O sistema recalcula e desvia
+                    para o Corredor Sul (✅).</p>
+                <div class="mt-6 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                    <video class="w-full rounded-t-lg" src="assets/cenario_2.mp4" autoplay loop muted controls>
+                        <img src="https://placehold.co/1200x800/2c3e50/f1c40f?text=Grave+o+Cenario+2+e+salve+como+%27assets/cenario_2.mp4%27"
+                            alt="Cenário 2">
+                    </video>
+                    <div class="p-5 bg-gray-50 rounded-b-lg border-t border-gray-200">
+                        <h3 class="font-bold text-yellow-700 text-lg">Análise de Resultado</h3>
+                        <p class="text-yellow-600">A falha no Norte (+R$ 80 de retorno) e a viagem pelo Sul (+R$ 270)
+                            resultam em um custo total de **R$ 350/ton** (Exemplo).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 3: CENÁRIO CRÍTICO -->
+            <div id="view-3" class="view-content">
+                <h2 class="text-3xl font-bold text-gray-900">3. Cenário Crítico (2 Falhas)</h2>
+                <p class="mt-2 text-lg text-gray-600">Simulação de falha no Norte (❌) e no Sul (❌). O sistema desvia
+                    para a Transversal Leste (✅).</p>
+                <div class="mt-6 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                    <video class="w-full rounded-t-lg" src="assets/cenario_3.mp4" autoplay loop muted controls>
+                        <img src="https://placehold.co/1200x800/2c3e50/f1c40f?text=Grave+o+Cenario+3+e+salve+como+%27assets/cenario_3.mp4%27"
+                            alt="Cenário 3">
+                    </video>
+                    <div class="p-5 bg-gray-50 rounded-b-lg border-t border-gray-200">
+                        <h3 class="font-bold text-orange-700 text-lg">Análise de Resultado</h3>
+                        <p class="text-orange-600">O custo de retorno das duas falhas, somado à rota Leste (estradas de
+                            terra), eleva o custo total para **R$ ~700/ton** (Exemplo).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 4: CENÁRIO COLAPSO -->
+            <div id="view-4" class="view-content">
+                <h2 class="text-3xl font-bold text-gray-900">4. Pior Cenário: Colapso Sistêmico</h2>
+                <p class="mt-2 text-lg text-gray-600">Simulação de "Cascata de Falhas". Norte (❌), Sul (❌) e Leste (❌)
+                    bloqueados. O sistema é forçado à rota Oeste.</p>
+                <div class="mt-6 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                    <video class="w-full rounded-t-lg" src="assets/cenario_4.mp4" autoplay loop muted controls>
+                        <img src="https://placehold.co/1200x800/2c3e50/f1c40f?text=Grave+o+Cenario+4+e+salve+como+%27assets/cenario_4.mp4%27"
+                            alt="Cenário 4">
+                    </video>
+                    <div class="p-5 bg-gray-50 rounded-b-lg border-t border-gray-200">
+                        <h3 class="font-bold text-red-700 text-lg">Análise de Resultado</h3>
+                        <p class="text-red-600">Este é o cenário de maior prejuízo. O custo de retorno das 3 falhas
+                            somado à rota final (Oeste) eleva o custo para **> R$ 1.500/ton** (Exemplo).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 5: DASHBOARD COMPARATIVO -->
+            <div id="view-5" class="view-content">
+                <h2 class="text-3xl font-bold text-gray-900">Dashboard Comparativo (Análise de Risco)</h2>
+                <p class="mt-2 text-lg text-gray-600">Análise estática 4-em-1 dos custos finais de cada cenário,
+                    incluindo prejuízos de retorno.</p>
+                <div class="mt-6 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden p-6">
+                    <img class="w-full rounded-lg" src="assets/dashboard_full.png" alt="Print do Dashboard 2x2"
+                        onerror="this.src='https://placehold.co/1200x800/f4f6f9/2c3e50?text=Tire+print+do+main_dashboard.py+e+salve+como+%27assets/dashboard_full.png%27'">
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- JavaScript para o Menu -->
+    <script src="script.js"></script>
+</body>
+
+</html>
