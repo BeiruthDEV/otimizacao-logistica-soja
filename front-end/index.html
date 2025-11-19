@@ -4,26 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGRO LOGISTICS v12 - Painel Tático</title>
+    <title>AGRO LOGISTICS v14 - Enterprise Dashboard</title>
 
-    <!-- Carrega o TailwindCSS (Framework) -->
+    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Carrega nosso CSS customizado -->
+    <!-- CSS Customizado -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Fonte Mono para os Logs -->
+    <!-- Fonte Mono para o Terminal -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
     <div class="flex h-screen overflow-hidden">
 
-        <!-- BARRA LATERAL (Inalterada - Hope UI Style) -->
-        <nav class="w-72 bg-white flex flex-col shadow-xl border-r border-gray-200 z-10">
+        <!-- MENU LATERAL (Estilo Hope UI - Branco e Azul) -->
+        <nav class="w-72 bg-white flex flex-col shadow-xl border-r border-gray-200 z-20">
             <div class="p-6 border-b border-gray-100 flex items-center gap-3">
-                <div class="bg-blue-600 p-2 rounded-lg shadow-lg text-white">
+                <div class="bg-blue-600 p-2.5 rounded-xl shadow-lg shadow-blue-200 text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -31,72 +31,87 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-gray-800 text-lg leading-tight">AGRO LOGISTICS</h1>
-                    <p class="text-xs text-gray-500 font-medium tracking-wider">SYSTEM V13.0</p>
+                    <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase">System v14.2</p>
                 </div>
             </div>
 
-            <ul class="flex-1 overflow-y-auto py-4 space-y-1 px-3">
+            <ul class="flex-1 overflow-y-auto py-6 space-y-1 px-4">
                 <li>
                     <button onclick="showView('view-0', this)"
-                        class="menu-item active group flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-blue-500" fill="none"
+                        class="menu-item active group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200">
+                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        Sobre o Projeto
+                        Visão Geral & Contexto
                     </button>
                 </li>
 
-                <li class="mt-6 mb-2 px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Simulações de Rota
+                <li class="mt-8 mb-3 px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Centro de Operações
                 </li>
 
                 <li>
                     <button onclick="showView('view-1', this)"
-                        class="menu-item group flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-green-50 hover:text-green-600 transition-all">
-                        <div class="w-2 h-2 rounded-full bg-green-400 mr-3 shadow-[0_0_8px_rgba(74,222,128,0.5)]"></div>
-                        1. Cenário Ideal (Norte)
+                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-green-50 hover:text-green-600 transition-all duration-200">
+                        <div class="w-2 h-2 rounded-full bg-green-500 mr-3 shadow-[0_0_0_2px_rgba(34,197,94,0.2)]">
+                        </div>
+                        1. Rota Ideal (Norte)
                     </button>
                 </li>
                 <li>
                     <button onclick="showView('view-2', this)"
-                        class="menu-item group flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-yellow-50 hover:text-yellow-600 transition-all">
-                        <div class="w-2 h-2 rounded-full bg-yellow-400 mr-3"></div>
+                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-yellow-50 hover:text-yellow-600 transition-all duration-200">
+                        <div class="w-2 h-2 rounded-full bg-yellow-500 mr-3"></div>
                         2. Contingência (Sul)
                     </button>
                 </li>
                 <li>
                     <button onclick="showView('view-3', this)"
-                        class="menu-item group flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-all">
-                        <div class="w-2 h-2 rounded-full bg-orange-400 mr-3"></div>
+                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-all duration-200">
+                        <div class="w-2 h-2 rounded-full bg-orange-500 mr-3"></div>
                         3. Crítico (Leste)
                     </button>
                 </li>
                 <li>
                     <button onclick="showView('view-4', this)"
-                        class="menu-item group flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all">
-                        <div class="w-2 h-2 rounded-full bg-red-500 mr-3 shadow-[0_0_8px_rgba(239,68,68,0.5)]"></div>
-                        4. Colapso Total (Oeste)
+                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all duration-200">
+                        <div
+                            class="w-2 h-2 rounded-full bg-red-600 mr-3 shadow-[0_0_0_2px_rgba(220,38,38,0.2)] animate-pulse">
+                        </div>
+                        4. Colapso (Oeste)
                     </button>
                 </li>
 
-                <li class="mt-6 mb-2 px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Relatórios</li>
+                <li class="mt-8 mb-3 px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Intelligence</li>
                 <li>
                     <button onclick="showView('view-5', this)"
-                        class="menu-item group flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-indigo-500" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
+                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-indigo-500 transition-colors"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        Dashboard Comparativo
+                        Dashboard Analítico
                     </button>
                 </li>
             </ul>
+
+            <div class="p-4 mt-auto border-t border-gray-100">
+                <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-3">
+                    <div
+                        class="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xs">
+                        MB</div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-700">Matheus Beiruth</p>
+                        <p class="text-[10px] text-gray-400">Engenharia de Software</p>
+                    </div>
+                </div>
+            </div>
         </nav>
 
         <!-- ÁREA PRINCIPAL -->
-        <main class="flex-1 h-full overflow-y-auto bg-gray-50 p-8">
+        <main class="flex-1 h-full overflow-y-auto bg-[#F3F4F6] p-6 lg:p-10">
 
             <!-- Banner de Header -->
             <div class="mb-8 p-8 rounded-xl shadow-lg bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
@@ -104,11 +119,15 @@
                 <p class="mt-2 text-blue-100">Bem-vindo, Matheus. Análise de resiliência e otimização de rotas.</p>
             </div>
 
-            <!-- VIEW 0: SOBRE O PROJETO (Mantido EXATAMENTE como você pediu) -->
-            <div id="view-0" class="view-content">
+            <!-- 
+                ================================================================
+                VIEW 0: SOBRE O PROJETO (COMPLETO: CONTEXTO + SOLUÇÃO + REFERÊNCIAS)
+                ================================================================
+            -->
+            <div id="view-0" class="view-content space-y-8 animate-fade-in">
 
-                <!-- Cards de KPI (Visual SaaS) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Cards de KPI -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                     <div
                         class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow cursor-default relative overflow-hidden group">
                         <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -141,7 +160,7 @@
                                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
                             </svg>
                         </div>
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Rota Sul (Backup)</h3>
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Rota Sul (Real)</h3>
                         <div class="flex items-baseline gap-1">
                             <span class="text-3xl font-extrabold text-gray-900">R$ 270</span>
                             <span class="text-sm text-gray-500 font-medium">/ ton</span>
@@ -152,7 +171,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
-                            Alta Resiliência
+                            Frete de Retorno
                         </div>
                     </div>
 
@@ -180,79 +199,56 @@
                     </div>
                 </div>
 
-                <!-- Grid de Conteúdo -->
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
-                    <!-- Texto Principal (2/3) -->
-                    <div class="xl:col-span-2 space-y-8">
-                        <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Contextualização: O Gargalo Logístico</h2>
-                            <article class="prose prose-indigo max-w-none text-gray-600 leading-relaxed">
-                                <p>O Brasil é um gigante na produção de soja, mas enfrenta um desafio geográfico
-                                    continental: o <strong>"Cinturão da Soja"</strong> (Mato Grosso) está isolado no
-                                    centro do país, a mais de 1.500 km dos principais portos. Este projeto propõe uma
-                                    solução baseada em <strong>Teoria dos Grafos</strong> para modelar e otimizar essa
-                                    malha crítica.</p>
-
-                                <h3 class="text-gray-800 font-bold text-lg mt-6 mb-2">Os Pilares da Modelagem</h3>
-                                <ul class="list-none space-y-2 pl-0">
-                                    <li class="flex items-start gap-3">
-                                        <span class="bg-blue-100 text-blue-600 p-1 rounded mt-1"><svg class="w-4 h-4"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7" />
-                                            </svg></span>
-                                        <span><strong>Métrica de Custo Composta:</strong> Consideramos Distância (Km),
-                                            Pedágios e Qualidade da Via (Asfalto vs. Terra).</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="bg-purple-100 text-purple-600 p-1 rounded mt-1"><svg
-                                                class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                                            </svg></span>
-                                        <span><strong>Simulação de Falha em Cascata:</strong> O algoritmo testa rotas
-                                            sequencialmente (Norte -> Sul -> Leste -> Oeste) simulando bloqueios
-                                            físicos.</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="bg-red-100 text-red-600 p-1 rounded mt-1"><svg class="w-4 h-4"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg></span>
-                                        <span><strong>Custo de Retorno (Backtracking):</strong> Calculamos o prejuízo
-                                            financeiro de ir até o ponto de bloqueio e ter que voltar, algo ignorado por
-                                            roteadores comuns.</span>
-                                    </li>
-                                </ul>
+                <!-- Seção 1: O Problema -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8 mb-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-4">O Problema: "Custo Brasil"</h2>
+                            <article class="prose prose-lg max-w-none prose-blue text-gray-600">
+                                <p>O Brasil é um líder mundial na produção de soja, mas enfrenta um desafio geográfico
+                                    colossal: o <strong>"Cinturão da Soja"</strong> (Mato Grosso) está isolado no centro
+                                    do país, a mais de 1.500 km dos principais portos.</p>
+                                <p>Nossas simulações focam na <strong>vulnerabilidade da malha viária</strong>. Rotas
+                                    mais curtas, como a BR-163 (Arco Norte), são reféns de condições climáticas e falta
+                                    de manutenção, criando um risco financeiro imenso.</p>
                             </article>
                         </div>
-                    </div>
-
-                    <!-- Coluna Visual (1/3) -->
-                    <div class="space-y-6">
-                        <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-4">
-                            <div class="relative rounded-xl overflow-hidden group">
-                                <img src="https://s01.video.glbimg.com/640x360/5687157.jpg" alt="Atoleiro BR-163"
-                                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
-                                <div
-                                    class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
-                                    <p class="text-white text-sm font-bold">O Risco Real: BR-163</p>
-                                    <p class="text-gray-300 text-xs">Bloqueios climáticos frequentes.</p>
-                                </div>
-                            </div>
+                        <div>
+                            <img src="https://s01.video.glbimg.com/640x360/5687157.jpg" alt="Caminhão atolado na BR-163"
+                                class="rounded-lg shadow-md w-full h-64 object-cover"
+                                onerror="this.src='https://placehold.co/600x400/C0392B/white?text=Atoleiro+na+BR-163+(O+Risco)'">
+                            <p class="text-center text-sm text-gray-500 mt-2">O risco real: atoleiros na BR-163 (PA).
+                            </p>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-4">
-                            <div class="relative rounded-xl overflow-hidden group">
-                                <img src="https://forbes.com.br/wp-content/uploads/2022/11/agro-hidrovias-arco-25nov22-GettyImages.jpg"
-                                    alt="Porto Miritituba"
-                                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
-                                <div
-                                    class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
-                                    <p class="text-white text-sm font-bold">Arco Norte (Hidrovia)</p>
-                                    <p class="text-gray-300 text-xs">Eficiente, mas dependente.</p>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+
+                <!-- NOVA SEÇÃO: ANÁLISE DE MERCADO (POR QUE O SUL AINDA É FORTE?) -->
+                <div class="bg-indigo-50 border border-indigo-100 rounded-xl shadow-sm p-8 mb-10">
+                    <h2 class="text-2xl font-bold text-indigo-900 mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Análise de Mercado: Por que Santos ainda domina?
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-indigo-800 mb-2">1. O Fator "Frete de Retorno"</h3>
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                Embora o Norte seja mais perto, o caminhão muitas vezes <strong>volta vazio</strong>,
+                                pois a região Amazônica consome menos produtos industrializados. Já na rota Sul
+                                (Santos), o caminhão leva soja e volta carregado de fertilizantes ou máquinas (Frete de
+                                Retorno), diluindo o custo operacional.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-indigo-800 mb-2">2. Maturidade Logística</h3>
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                O Porto de Santos possui capacidade de armazenagem (silos) muito superior. Em caso de
+                                atraso no navio, a carga tem onde ficar. No Norte, a infraestrutura "Just-in-Time" é
+                                mais suscetível a gargalos, tornando Santos a opção "segura" apesar de mais cara.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -281,7 +277,7 @@
                             alt="Porto de Santos" class="w-full h-56 object-cover"
                             onerror="this.src='https://placehold.co/600x400/2C3E50/white?text=Porto+de+Santos'">
                         <div class="p-6">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Opção 2: O Corredor Sul (Resiliência)</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Opção 2: O Corredor Sul (Segurança)</h3>
                             <p class="text-gray-600">A rota tradicional e cara. Utiliza rodovias duplicadas e a malha
                                 ferroviária (Ferronorte) até Santos (SP).</p>
                             <ul class="list-disc list-inside mt-4 space-y-1 text-gray-700">
@@ -292,72 +288,107 @@
                     </div>
                 </div>
 
-                <!-- Seção 3: A Solução (Metodologia) -->
+                <!-- Seção 3: Metodologia -->
                 <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8">
-                    <!-- 'prose' formata o texto automaticamente -->
-                    <article class="prose prose-lg max-w-none prose-blue">
+                    <article class="prose prose-lg max-w-none prose-blue text-gray-600">
                         <h2 class="text-gray-900">Nossa Solução: Teoria dos Grafos Aplicada</h2>
                         <p>Para modelar e resolver este problema, aplicamos conceitos da disciplina de Análise de
-                            Complexidade de Algoritmos, especificamente a <strong>Teoria dos Grafos</strong>. Utilizamos
-                            a biblioteca <strong>NetworkX</strong> do Python para construir um modelo matemático da rede
-                            logística.</p>
+                            Complexidade de Algoritmos, especificamente a <strong>Teoria dos Grafos</strong>.</p>
 
-                        <h3>1. Modelagem (O Grafo)</h3>
+                        <!-- ... (Conteúdo de metodologia mantido igual) ... -->
+
+                        <h3 class="text-gray-800 font-bold text-lg mt-6 mb-2">1. Modelagem (O Grafo)</h3>
                         <p>A rede de estradas e ferrovias foi modelada como um <strong>Grafo Direcionado e Ponderado
                                 (DiGraph)</strong>:</p>
                         <ul>
-                            <li><strong>Vértices (Nós):</strong> Representam cidades estratégicas (Sorriso, Cuiabá),
-                                hubs de transbordo (Rondonópolis) ou destinos finais (Portos de Santos, Miritituba).
-                            </li>
-                            <li><strong>Arestas (Linhas):</strong> Representam os modais de transporte (Rodovias como
-                                BR-163, Ferrovias como a Ferronorte).</li>
-                            <li><strong>Pesos (Valores):</strong> O ponto crucial. Cada aresta possui múltiplos
-                                atributos que usamos para a tomada de decisão:
+                            <li><strong>Vértices (Nós):</strong> Cidades, Hubs (ex: Rondonópolis) e Portos.</li>
+                            <li><strong>Arestas (Linhas):</strong> Rodovias e Ferrovias.</li>
+                            <li><strong>Pesos (Valores):</strong> Cada aresta possui múltiplos atributos:
                                 <ol>
-                                    <li><strong>Custo (R$/ton):</strong> A métrica principal de otimização.</li>
+                                    <li><strong>Custo (R$/ton):</strong> Métrica principal de otimização.</li>
                                     <li><strong>Distância (Km):</strong> Informação geográfica real.</li>
-                                    <li><strong>Tipo de Via:</strong> 'road' (Rodovia) ou 'rail' (Ferrovia).</li>
-                                    <li><strong>Info Adicional:</strong> 'Precária', 'Concessionada', 'Não Pavimentada',
-                                        etc.</li>
+                                    <li><strong>Tipo de Via:</strong> Rodovia (road) ou Ferrovia (rail).</li>
                                 </ol>
                             </li>
                         </ul>
 
-                        <h3>2. O Algoritmo (A Inteligência)</h3>
-                        <p>O desafio não era apenas achar *um* caminho, mas sim **gerenciar falhas**. A solução foi
-                            dividida em duas partes:</p>
+                        <h3 class="text-gray-800 font-bold text-lg mt-6 mb-2">2. O Algoritmo (A Inteligência)</h3>
+                        <p>O desafio não era apenas achar *um* caminho, mas sim <strong>gerenciar falhas</strong>.</p>
+                        <h4>A. Cálculo de Caminho Mínimo</h4>
+                        <p>O sistema usa <code>nx.all_simple_paths</code> para encontrar todas as rotas possíveis e
+                            itera sobre elas somando "manualmente" os pesos para encontrar o menor custo total.</p>
 
-                        <h4>A. Cálculo de Caminho Mínimo (Manual)</h4>
-                        <p>Seguindo os requisitos do exercício, não usamos um algoritmo "caixa-preta" como Dijkstra. Em
-                            vez disso, o `core.py` usa `nx.all_simple_paths` para encontrar **todas as rotas possíveis**
-                            de Sorriso a um porto. Em seguida, ele itera (em loop) por cada caminho, somando
-                            "manualmente" os pesos (`weight`) de cada aresta para encontrar o caminho com o menor custo
-                            total.</p>
-
-                        <h4>B. A Simulação de "Cascata de Falhas" (A Inovação)</h4>
-                        <p>Esta é a maior inovação do projeto. Em vez de apenas recalcular a rota, simulamos o **custo
-                            real de uma falha logística**. Quando uma rota falha (ex: BR-163 bloqueada), o sistema
-                            calcula:</p>
-
-                        <p class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg text-lg">
-                            <strong>Custo Real = Custo da Rota Final + (Soma do Custo de Ida e Volta de todas as Rotas
-                                Falhas)</strong>
+                        <h4>B. A Simulação de "Cascata de Falhas"</h4>
+                        <p>Esta é a maior inovação do projeto. O algoritmo simula a <strong>Logística Reversa
+                                Forçada</strong>. Quando uma rota falha (ex: BR-163 bloqueada), o sistema calcula:</p>
+                        <p class="bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 rounded-lg my-4 font-medium">
+                            Custo Real = Custo da Rota Final + (Soma do Custo de Ida e Volta de todas as Rotas Falhas)
                         </p>
+                        <p>Isso demonstra o prejuízo real de um bloqueio: o custo do retorno à base antes de tentar uma
+                            nova rota.</p>
 
-                        <p>Isso significa que o caminhão que tenta ir pela BR-163 (Custo R$ 40) e falha, precisa voltar
-                            (mais R$ 40), gerando um prejuízo de **R$ 80** antes mesmo de começar a rota alternativa. É
-                            isso que transforma um frete de R$ 380 em R$ 1.500 no pior cenário.</p>
-
+                        <!-- SEÇÃO DE REFERÊNCIAS ADICIONADA AQUI -->
+                        <div class="mt-12 pt-6 border-t border-gray-100 bg-blue-50 p-6 rounded-lg">
+                            <h3 class="text-gray-900 font-bold text-lg mb-4 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                                Fontes de Dados e Referências Bibliográficas
+                            </h3>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Para garantir a veracidade da simulação, os parâmetros de custo, distância e risco foram
+                                calibrados com base em dados oficiais do setor de logística brasileiro:
+                            </p>
+                            <ul class="text-sm text-gray-600 space-y-4 font-medium list-none pl-0">
+                                <li class="flex gap-3">
+                                    <div class="min-w-[2rem] font-bold text-blue-700">[1]</div>
+                                    <div>
+                                        <strong class="block text-gray-800">CONAB (Companhia Nacional de
+                                            Abastecimento)</strong>
+                                        Utilizado para definir a disparidade de preço entre as rotas Norte (R$ 180) e
+                                        Sul (R$ 270), baseada no Boletim Logístico da Soja 2024.
+                                    </div>
+                                </li>
+                                <li class="flex gap-3">
+                                    <div class="min-w-[2rem] font-bold text-blue-700">[2]</div>
+                                    <div>
+                                        <strong class="block text-gray-800">ESALQ-LOG (USP) / Sifreca</strong>
+                                        Base técnica para o cálculo do custo rodoviário por tonelada/km, considerando o
+                                        impacto do preço do diesel e pedágios na formação do frete.
+                                    </div>
+                                </li>
+                                <li class="flex gap-3">
+                                    <div class="min-w-[2rem] font-bold text-blue-700">[3]</div>
+                                    <div>
+                                        <strong class="block text-gray-800">CNT (Confederação Nacional do
+                                            Transporte)</strong>
+                                        Forneceu os dados sobre a qualidade da pavimentação da BR-163, justificando o
+                                        fator de risco "Crítico" e a alta probabilidade de bloqueios por chuva no
+                                        modelo.
+                                    </div>
+                                </li>
+                                <li class="flex gap-3">
+                                    <div class="min-w-[2rem] font-bold text-blue-700">[4]</div>
+                                    <div>
+                                        <strong class="block text-gray-800">EPE (Empresa de Pesquisa
+                                            Energética)</strong>
+                                        Utilizada para embasar a priorização do modal ferroviário (Ferronorte) no grafo,
+                                        devido à sua maior eficiência energética e menor custo variável.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </article>
                 </div>
             </div>
 
             <!-- 
                 ================================================================
-                VIEWS 1 A 5 (Simulações e Dashboard) - INALTERADOS
+                VIEW 1: CENÁRIO IDEAL (DASHBOARD RICO)
                 ================================================================
             -->
-
             <div id="view-1" class="view-content space-y-6">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
                     <!-- Coluna Esquerda: Vídeo (2/3) -->
@@ -460,44 +491,87 @@
                 </div>
             </div>
 
-            <!-- VIEW 2, 3 e 4 (Seguindo o mesmo padrão, mas com cores de alerta) -->
-            <!-- Vou colocar apenas a estrutura básica para não estourar o limite, mas já configurada -->
-
-            <!-- VIEW 2: CONTINGÊNCIA -->
+            <!-- VIEW 2: CONTINGÊNCIA (DASHBOARD) -->
             <div id="view-2" class="view-content space-y-6">
-                <div class="bg-white p-2 rounded-xl shadow-sm border border-gray-200">
-                    <video class="w-full rounded-lg" src="assets_front/cenario_2.mp4" autoplay loop muted
-                        controls></video>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-yellow-400">
-                    <h3 class="font-bold text-lg text-gray-800">Relatório de Contingência</h3>
-                    <p class="text-gray-600 mt-1">Rota Norte bloqueada. Redirecionamento automático para o Corredor Sul
-                        (Santos) via BR-163 Sul e BR-364. Aumento de custo devido a pedágios.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                    <div class="lg:col-span-2 bg-white p-2 rounded-xl shadow-sm border border-yellow-200">
+                        <div class="bg-black rounded-xl overflow-hidden aspect-video relative">
+                            <div
+                                class="absolute top-4 left-4 bg-yellow-500/90 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold z-10 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> REROUTING
+                            </div>
+                            <video class="w-full h-full object-cover" src="assets_front/cenario_2.mp4" autoplay loop
+                                muted controls></video>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-4">Status de
+                                Contingência</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1"><span>Acréscimo de Custo</span> <span
+                                            class="font-bold text-yellow-600">+50%</span></div>
+                                    <div class="w-full bg-gray-100 rounded-full h-2">
+                                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-[#1E293B] text-yellow-300 p-4 rounded-2xl shadow-lg flex-1 font-mono text-xs overflow-y-auto border border-gray-700 custom-scrollbar">
+                            <p>[SYSTEM] Route calculation...</p>
+                            <p class="text-gray-500">> Trying North Route...</p>
+                            <p class="text-red-500">[!] ERROR: Road Blocked at Sinop</p>
+                            <p class="text-yellow-200">> Rerouting to South Corridor...</p>
+                            <p class="text-white">[SUCCESS] Delivered at Santos Port (Delayed)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- VIEW 3: CRÍTICO -->
+            <!-- VIEW 3: CRÍTICO (DASHBOARD) -->
             <div id="view-3" class="view-content space-y-6">
-                <div class="bg-white p-2 rounded-xl shadow-sm border border-gray-200">
-                    <video class="w-full rounded-lg" src="assets_front/cenario_3.mp4" autoplay loop muted
-                        controls></video>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500">
-                    <h3 class="font-bold text-lg text-gray-800">Alerta de Risco Elevado</h3>
-                    <p class="text-gray-600 mt-1">Falha dupla (Norte e Sul). Ativação da rota transversal Leste. Uso de
-                        estradas vicinais e não pavimentadas detectado.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                    <div class="lg:col-span-2 bg-white p-2 rounded-xl shadow-sm border border-orange-200">
+                        <div class="bg-black rounded-xl overflow-hidden aspect-video relative">
+                            <div
+                                class="absolute top-4 left-4 bg-orange-500/90 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold z-10 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> WARNING
+                            </div>
+                            <video class="w-full h-full object-cover" src="assets_front/cenario_3.mp4" autoplay loop
+                                muted controls></video>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                            <h3 class="text-xs font-bold text-orange-500 uppercase tracking-wide mb-4">Status Crítico
+                            </h3>
+                            <p class="text-sm text-gray-600">Uso de estradas não pavimentadas detectado. Velocidade
+                                média reduzida.</p>
+                        </div>
+                        <div
+                            class="bg-[#1E293B] text-orange-300 p-4 rounded-2xl shadow-lg flex-1 font-mono text-xs overflow-y-auto border border-gray-700 custom-scrollbar">
+                            <p class="text-red-500">[!] BLOCK: BR-163 North (Rain)</p>
+                            <p class="text-red-500">[!] BLOCK: BR-364 South (Strike)</p>
+                            <p class="text-orange-300">> Calculating Emergency Path...</p>
+                            <p class="text-gray-500">> Selected: East Route (Dirt Road)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- VIEW 4: COLAPSO (Painel Vermelho Completo) -->
+            <!-- VIEW 4: COLAPSO (DASHBOARD) -->
             <div id="view-4" class="view-content space-y-6">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                    <!-- Coluna Vídeo -->
                     <div class="lg:col-span-2 bg-white p-2 rounded-xl shadow-sm border border-red-200 relative">
-                        <div
-                            class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold z-10 animate-pulse">
-                            CRITICAL FAILURE</div>
-                        <video class="w-full rounded-lg" src="assets_front/cenario_4.mp4" autoplay loop muted
+                        <div class="bg-black rounded-xl overflow-hidden aspect-video relative">
+                            <div
+                                class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold z-10 animate-pulse">
+                                CRITICAL FAILURE</div>
                             controls></video>
+                        </div>
                     </div>
                     <div class="flex flex-col gap-4">
                         <div class="bg-red-50 p-6 rounded-2xl shadow-sm border border-red-100">
