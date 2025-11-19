@@ -4,206 +4,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGRO LOGISTICS v14 - Enterprise Dashboard</title>
+    <title>AGRO LOGISTICS v15 - Enterprise Suite</title>
 
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#1e293b', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- CSS Customizado -->
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- Fontes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Externo -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Fonte Mono para o Terminal -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body class="bg-slate-100 text-slate-800 overflow-hidden">
 
-    <div class="flex h-screen overflow-hidden">
+    <div class="flex h-screen">
 
-        <!-- MENU LATERAL (Estilo Hope UI - Branco e Azul) -->
-        <nav class="w-72 bg-white flex flex-col shadow-xl border-r border-gray-200 z-20">
-            <div class="p-6 border-b border-gray-100 flex items-center gap-3">
-                <div class="bg-blue-600 p-2.5 rounded-xl shadow-lg shadow-blue-200 text-white">
+        <!-- MENU LATERAL -->
+        <nav
+            class="w-72 bg-slate-900 flex flex-col shadow-2xl z-20 text-slate-300 transition-all duration-300 flex-shrink-0">
+
+            <!-- LOGO AREA (Ícone de Caminhão) -->
+            <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+                <div
+                    class="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-lg shadow-lg shadow-blue-900/50 text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h.008M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v1.725c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V3.375c0-.621-.504-1.125-1.125-1.125H8.25" />
+                            d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0">
+                        </path>
                     </svg>
                 </div>
                 <div>
-                    <h1 class="font-bold text-gray-800 text-lg leading-tight">AGRO LOGISTICS</h1>
-                    <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase">System v14.2</p>
+                    <h1 class="font-bold text-white text-lg tracking-tight">AGRO<span class="text-blue-500">LOG</span>
+                    </h1>
+                    <p class="text-[10px] text-slate-500 font-semibold tracking-widest uppercase">Enterprise v15.0</p>
                 </div>
             </div>
 
-            <ul class="flex-1 overflow-y-auto py-6 space-y-1 px-4">
+            <!-- Navegação -->
+            <ul class="flex-1 overflow-y-auto py-6 space-y-1 px-3">
                 <li>
                     <button onclick="showView('view-0', this)"
-                        class="menu-item active group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none"
+                        class="menu-item active w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-white transition-all duration-200 border-l-3 border-transparent group">
+                        <svg class="w-5 h-5 mr-3 text-slate-500 group-hover:text-white transition-colors" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                         </svg>
-                        Visão Geral & Contexto
+                        Visão Geral (Executive)
                     </button>
                 </li>
 
-                <li class="mt-8 mb-3 px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Centro de Operações
-                </li>
+                <li class="mt-6 mb-2 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Simulações em
+                    Tempo Real</li>
 
                 <li>
                     <button onclick="showView('view-1', this)"
-                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-green-50 hover:text-green-600 transition-all duration-200">
-                        <div class="w-2 h-2 rounded-full bg-green-500 mr-3 shadow-[0_0_0_2px_rgba(34,197,94,0.2)]">
-                        </div>
+                        class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-green-400 transition-all duration-200 border-l-3 border-transparent group">
+                        <div class="w-2 h-2 rounded-full bg-green-500 mr-3 shadow-[0_0_10px_rgba(34,197,94,0.6)]"></div>
                         1. Rota Ideal (Norte)
                     </button>
                 </li>
                 <li>
                     <button onclick="showView('view-2', this)"
-                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-yellow-50 hover:text-yellow-600 transition-all duration-200">
+                        class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-yellow-400 transition-all duration-200 border-l-3 border-transparent group">
                         <div class="w-2 h-2 rounded-full bg-yellow-500 mr-3"></div>
                         2. Contingência (Sul)
                     </button>
                 </li>
                 <li>
                     <button onclick="showView('view-3', this)"
-                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-all duration-200">
+                        class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-orange-400 transition-all duration-200 border-l-3 border-transparent group">
                         <div class="w-2 h-2 rounded-full bg-orange-500 mr-3"></div>
                         3. Crítico (Leste)
                     </button>
                 </li>
                 <li>
                     <button onclick="showView('view-4', this)"
-                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all duration-200">
+                        class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-red-400 transition-all duration-200 border-l-3 border-transparent group">
                         <div
-                            class="w-2 h-2 rounded-full bg-red-600 mr-3 shadow-[0_0_0_2px_rgba(220,38,38,0.2)] animate-pulse">
+                            class="w-2 h-2 rounded-full bg-red-600 mr-3 shadow-[0_0_10px_rgba(220,38,38,0.6)] animate-pulse">
                         </div>
                         4. Colapso (Oeste)
                     </button>
                 </li>
 
-                <li class="mt-8 mb-3 px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Intelligence</li>
+                <li class="mt-6 mb-2 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Analytics</li>
                 <li>
                     <button onclick="showView('view-5', this)"
-                        class="menu-item group flex items-center w-full px-3 py-3 text-sm font-medium rounded-xl text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-indigo-500 transition-colors"
+                        class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-indigo-400 transition-all duration-200 border-l-3 border-transparent group">
+                        <svg class="w-5 h-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
-                        Dashboard Analítico
+                        Dashboard Financeiro
                     </button>
                 </li>
             </ul>
 
-            <div class="p-4 mt-auto border-t border-gray-100">
-                <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-3">
+            <!-- User Profile -->
+            <div class="p-4 border-t border-slate-800">
+                <div class="bg-slate-800/50 rounded-lg p-3 flex items-center gap-3 border border-slate-700">
                     <div
-                        class="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xs">
+                        class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold text-xs shadow-lg">
                         MB</div>
                     <div>
-                        <p class="text-xs font-bold text-gray-700">Matheus Beiruth</p>
-                        <p class="text-[10px] text-gray-400">Engenharia de Software</p>
+                        <p class="text-xs font-bold text-slate-200">Matheus Beiruth</p>
+                        <p class="text-[10px] text-slate-500">System Admin</p>
                     </div>
                 </div>
             </div>
         </nav>
 
-        <!-- ÁREA PRINCIPAL -->
-        <main class="flex-1 h-full overflow-y-auto bg-[#F3F4F6] p-6 lg:p-10">
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 h-full overflow-y-auto bg-[#F1F5F9] p-6 lg:p-10 relative">
 
-            <!-- Banner de Header -->
-            <div class="mb-8 p-8 rounded-xl shadow-lg bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-                <h1 class="text-4xl font-bold">Painel de Simulação Logística</h1>
-                <p class="mt-2 text-blue-100">Bem-vindo, Matheus. Análise de resiliência e otimização de rotas.</p>
+            <!-- Background Decoration -->
+            <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-slate-200 to-transparent -z-10"></div>
+
+            <!-- Header -->
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Painel de Controle</h2>
+                    <p class="text-slate-500 mt-1">Monitoramento em tempo real da malha logística nacional.</p>
+                </div>
+                <div class="flex gap-2">
+                    <span
+                        class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> SISTEMA ONLINE
+                    </span>
+                </div>
             </div>
 
-            <!-- 
-                ================================================================
-                VIEW 0: SOBRE O PROJETO (COMPLETO: CONTEXTO + SOLUÇÃO + REFERÊNCIAS)
-                ================================================================
-            -->
-            <div id="view-0" class="view-content space-y-8 animate-fade-in">
+            <!-- VIEW 0: VISÃO GERAL COMPLETA -->
+            <div id="view-0" class="view-content space-y-8">
 
-                <!-- Cards de KPI -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <!-- KPIs -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div
-                        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow cursor-default relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <svg class="w-16 h-16 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
-                            </svg>
+                        class="glass-panel rounded-2xl p-6 shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
+                        <div
+                            class="absolute right-0 top-0 w-24 h-24 bg-blue-500/10 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-blue-500/20">
                         </div>
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Rota Norte (Ideal)
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Melhor Custo (Norte)
                         </h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-3xl font-extrabold text-gray-900">R$ 180</span>
-                            <span class="text-sm text-gray-500 font-medium">/ ton</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-slate-800">R$ 180</span>
+                            <span class="text-sm font-medium text-slate-500">/ ton</span>
                         </div>
                         <div
-                            class="mt-4 flex items-center gap-2 text-sm text-green-600 bg-green-50 w-fit px-2 py-1 rounded-md font-medium">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="mt-4 inline-flex items-center px-2 py-1 rounded-md bg-green-100 text-green-700 text-xs font-bold">
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
-                            Menor Custo Brasil
+                            Eficiência Máxima
                         </div>
                     </div>
-
                     <div
-                        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow cursor-default relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <svg class="w-16 h-16 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-                            </svg>
+                        class="glass-panel rounded-2xl p-6 shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
+                        <div
+                            class="absolute right-0 top-0 w-24 h-24 bg-yellow-500/10 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-yellow-500/20">
                         </div>
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Rota Sul (Real)</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-3xl font-extrabold text-gray-900">R$ 270</span>
-                            <span class="text-sm text-gray-500 font-medium">/ ton</span>
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Custo Médio (Sul)
+                        </h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-slate-800">R$ 270</span>
+                            <span class="text-sm font-medium text-slate-500">/ ton</span>
                         </div>
                         <div
-                            class="mt-4 flex items-center gap-2 text-sm text-yellow-700 bg-yellow-50 w-fit px-2 py-1 rounded-md font-medium">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="mt-4 inline-flex items-center px-2 py-1 rounded-md bg-yellow-100 text-yellow-800 text-xs font-bold">
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
-                            Frete de Retorno
+                            Rota Padrão
                         </div>
                     </div>
-
                     <div
-                        class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow cursor-default relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <svg class="w-16 h-16 text-red-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
-                            </svg>
+                        class="glass-panel rounded-2xl p-6 shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group border-l-4 border-red-500">
+                        <div
+                            class="absolute right-0 top-0 w-24 h-24 bg-red-500/10 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-red-500/20">
                         </div>
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Custo do Colapso</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-3xl font-extrabold text-red-600">+400%</span>
-                            <span class="text-sm text-gray-500 font-medium">Impacto</span>
+                        <h3 class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Risco de Colapso</h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-slate-800">R$ 770</span>
+                            <span class="text-sm font-medium text-slate-500">/ ton</span>
                         </div>
                         <div
-                            class="mt-4 flex items-center gap-2 text-sm text-red-700 bg-red-50 w-fit px-2 py-1 rounded-md font-medium">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="mt-4 inline-flex items-center px-2 py-1 rounded-md bg-red-100 text-red-700 text-xs font-bold">
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            Logística Reversa
+                            +400% de Impacto
                         </div>
                     </div>
                 </div>
 
-                <!-- Seção 1: O Problema -->
-                <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8 mb-10">
+                <!-- SEÇÃO 1: O CONTEXTO -->
+                <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-8 mb-10">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                                 <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -211,28 +232,23 @@
                                 </svg>
                                 O Contexto: Por que a Logística Brasileira é um Desafio?
                             </h2>
-                            <article class="prose prose-indigo max-w-none text-gray-600 leading-relaxed text-justify">
+                            <article class="prose max-w-none text-slate-600 text-justify">
                                 <p>O Brasil é uma potência agroexportadora, mas enfrenta um desafio geográfico
                                     continental. O <strong>"Cinturão da Soja"</strong>, localizado no Mato Grosso, está
                                     isolado no centro da América do Sul, a mais de <strong>1.500 km</strong> dos
                                     principais portos de escoamento. Essa distância cria o famoso "Custo Brasil", onde o
                                     frete pode consumir até 30% da receita do produtor.</p>
-
-                                <h3 class="text-gray-800 font-bold text-lg mt-6 mb-2 border-l-4 border-red-500 pl-3">O
+                                <h3 class="text-slate-800 font-bold text-lg mt-6 mb-2 border-l-4 border-red-500 pl-3">O
                                     Problema Central: A Dependência Rodoviária</h3>
-                                <p>Diferente de concorrentes como os EUA (que usam hidrovias), o Brasil depende
-                                    majoritariamente de caminhões. Isso gera vulnerabilidade crítica:</p>
+                                <p>Diferente de concorrentes como os EUA, o Brasil depende majoritariamente de
+                                    caminhões:</p>
                                 <ul class="list-disc pl-5 space-y-2">
-                                    <li><strong>Malha Viária Precária:</strong> Estradas como a BR-163 no Pará, embora
-                                        essenciais, atravessam regiões de floresta com chuvas intensas, causando
-                                        atoleiros frequentes.</li>
-                                    <li><strong>Falta de Redundância:</strong> Em muitas regiões, existe apenas
-                                        <strong>uma</strong> estrada viável. Se uma ponte cai ou ocorre um protesto, não
-                                        há "caminho alternativo" próximo.
-                                    </li>
-                                    <li><strong>Custo de Interrupção:</strong> Quando uma via trava, a carga não apenas
-                                        "para". Ela precisa retornar centenas de quilômetros para buscar outra rota,
-                                        duplicando o custo.</li>
+                                    <li><strong>Malha Viária Precária:</strong> Estradas como a BR-163 no Pará
+                                        atravessam regiões de floresta com chuvas intensas.</li>
+                                    <li><strong>Falta de Redundância:</strong> Em muitas regiões, existe apenas uma
+                                        estrada viável.</li>
+                                    <li><strong>Custo de Interrupção:</strong> Quando uma via trava, a carga precisa
+                                        retornar para buscar outra rota, duplicando o custo.</li>
                                 </ul>
                             </article>
                         </div>
@@ -240,14 +256,14 @@
                             <img src="https://s01.video.glbimg.com/640x360/5687157.jpg" alt="Caminhão atolado na BR-163"
                                 class="rounded-lg shadow-md w-full h-64 object-cover"
                                 onerror="this.src='https://placehold.co/600x400/C0392B/white?text=Atoleiro+na+BR-163+(O+Risco)'">
-                            <p class="text-center text-sm text-gray-500 mt-2">O risco real: atoleiros na BR-163 (PA).
+                            <p class="text-center text-xs text-slate-400 mt-2">O risco real: atoleiros na BR-163 (PA).
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- NOVA SEÇÃO: ANÁLISE DE MERCADO (POR QUE O SUL AINDA É FORTE?) -->
-                <div class="bg-indigo-50 border border-indigo-100 rounded-xl shadow-sm p-8 mb-10">
+                <!-- SEÇÃO 2: ANÁLISE DE MERCADO -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl shadow-sm p-8 mb-10">
                     <h2 class="text-2xl font-bold text-indigo-900 mb-4 flex items-center gap-2">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -258,7 +274,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <h3 class="font-bold text-indigo-800 mb-2">1. O Fator "Frete de Retorno"</h3>
-                            <p class="text-gray-700 text-sm leading-relaxed">
+                            <p class="text-slate-700 text-sm leading-relaxed">
                                 Embora o Norte seja mais perto, o caminhão muitas vezes <strong>volta vazio</strong>,
                                 pois a região Amazônica consome menos produtos industrializados. Já na rota Sul
                                 (Santos), o caminhão leva soja e volta carregado de fertilizantes ou máquinas (Frete de
@@ -267,7 +283,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-indigo-800 mb-2">2. Maturidade Logística</h3>
-                            <p class="text-gray-700 text-sm leading-relaxed">
+                            <p class="text-slate-700 text-sm leading-relaxed">
                                 O Porto de Santos possui capacidade de armazenagem (silos) muito superior. Em caso de
                                 atraso no navio, a carga tem onde ficar. No Norte, a infraestrutura "Just-in-Time" é
                                 mais suscetível a gargalos, tornando Santos a opção "segura" apesar de mais cara.
@@ -276,34 +292,42 @@
                     </div>
                 </div>
 
-                <!-- Seção 2: O Dilema dos Modais -->
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">O Dilema Estratégico: Norte vs. Sul</h2>
+                <!-- SEÇÃO 3: O DILEMA ESTRATÉGICO -->
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">O Dilema Estratégico: Norte vs. Sul</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
                     <div
-                        class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                        <img src="https://cdn-pen.nuneshost.com/images/191116-hidrovias-do-brasil-estacao-de-transbordo-de-carga-miritituba-fluvial.jpg"
-                            alt="Porto de Miritituba" class="w-full h-56 object-cover"
-                            onerror="this.src='https://placehold.co/600x400/2980B9/white?text=Porto+de+Miritituba'">
+                        class="bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                        <div class="overflow-hidden h-56">
+                            <img src="https://cdn-pen.nuneshost.com/images/191116-hidrovias-do-brasil-estacao-de-transbordo-de-carga-miritituba-fluvial.jpg"
+                                alt="Porto de Miritituba"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                onerror="this.src='https://placehold.co/600x400/2980B9/white?text=Porto+de+Miritituba'">
+                        </div>
                         <div class="p-6">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Opção 1: O Arco Norte (Eficiência)</h3>
-                            <p class="text-gray-600">A rota geograficamente mais curta e barata. Utiliza a BR-163 até
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Opção 1: O Arco Norte (Eficiência)</h3>
+                            <p class="text-slate-600 text-sm">A rota geograficamente mais curta e barata. Utiliza a
+                                BR-163 até
                                 Miritituba (PA), transferindo para barcaças.</p>
-                            <ul class="list-disc list-inside mt-4 space-y-1 text-gray-700">
+                            <ul class="list-disc list-inside mt-4 space-y-1 text-slate-600 text-sm">
                                 <li><strong>Pró:</strong> Menor custo, menor distância (915 km).</li>
                                 <li><strong>Contra:</strong> Alta dependência da BR-163.</li>
                             </ul>
                         </div>
                     </div>
                     <div
-                        class="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/01/portosantos.jpg?w=987"
-                            alt="Porto de Santos" class="w-full h-56 object-cover"
-                            onerror="this.src='https://placehold.co/600x400/2C3E50/white?text=Porto+de+Santos'">
+                        class="bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                        <div class="overflow-hidden h-56">
+                            <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/01/portosantos.jpg?w=987"
+                                alt="Porto de Santos"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                onerror="this.src='https://placehold.co/600x400/2C3E50/white?text=Porto+de+Santos'">
+                        </div>
                         <div class="p-6">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Opção 2: O Corredor Sul (Segurança)</h3>
-                            <p class="text-gray-600">A rota tradicional e cara. Utiliza rodovias duplicadas e a malha
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Opção 2: O Corredor Sul (Segurança)</h3>
+                            <p class="text-slate-600 text-sm">A rota tradicional e cara. Utiliza rodovias duplicadas e a
+                                malha
                                 ferroviária (Ferronorte) até Santos (SP).</p>
-                            <ul class="list-disc list-inside mt-4 space-y-1 text-gray-700">
+                            <ul class="list-disc list-inside mt-4 space-y-1 text-slate-600 text-sm">
                                 <li><strong>Pró:</strong> Alta confiabilidade e resiliência.</li>
                                 <li><strong>Contra:</strong> Custo elevado (pedágios) e distância.</li>
                             </ul>
@@ -311,19 +335,17 @@
                     </div>
                 </div>
 
-                <!-- Seção 3: Metodologia -->
-                <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8">
-                    <article class="prose prose-lg max-w-none prose-blue text-gray-600">
-                        <h2 class="text-gray-900">Nossa Solução: Teoria dos Grafos Aplicada</h2>
+                <!-- SEÇÃO 4: METODOLOGIA E REFERÊNCIAS -->
+                <div class="bg-white border border-slate-200 rounded-xl shadow-lg p-8">
+                    <article class="prose max-w-none text-slate-600">
+                        <h2 class="text-slate-800 text-xl font-bold mb-4">Nossa Solução: Teoria dos Grafos Aplicada</h2>
                         <p>Para modelar e resolver este problema, aplicamos conceitos da disciplina de Análise de
                             Complexidade de Algoritmos, especificamente a <strong>Teoria dos Grafos</strong>.</p>
 
-                        <!-- ... (Conteúdo de metodologia mantido igual) ... -->
-
-                        <h3 class="text-gray-800 font-bold text-lg mt-6 mb-2">1. Modelagem (O Grafo)</h3>
+                        <h3 class="text-slate-800 font-bold text-lg mt-6 mb-2">1. Modelagem (O Grafo)</h3>
                         <p>A rede de estradas e ferrovias foi modelada como um <strong>Grafo Direcionado e Ponderado
                                 (DiGraph)</strong>:</p>
-                        <ul>
+                        <ul class="text-sm">
                             <li><strong>Vértices (Nós):</strong> Cidades, Hubs (ex: Rondonópolis) e Portos.</li>
                             <li><strong>Arestas (Linhas):</strong> Rodovias e Ferrovias.</li>
                             <li><strong>Pesos (Valores):</strong> Cada aresta possui múltiplos atributos:
@@ -335,24 +357,28 @@
                             </li>
                         </ul>
 
-                        <h3 class="text-gray-800 font-bold text-lg mt-6 mb-2">2. O Algoritmo (A Inteligência)</h3>
+                        <h3 class="text-slate-800 font-bold text-lg mt-6 mb-2">2. O Algoritmo (A Inteligência)</h3>
                         <p>O desafio não era apenas achar *um* caminho, mas sim <strong>gerenciar falhas</strong>.</p>
-                        <h4>A. Cálculo de Caminho Mínimo</h4>
-                        <p>O sistema usa <code>nx.all_simple_paths</code> para encontrar todas as rotas possíveis e
+                        <h4 class="font-bold text-slate-700 mt-2">A. Cálculo de Caminho Mínimo</h4>
+                        <p class="text-sm">O sistema usa <code>nx.all_simple_paths</code> para encontrar todas as rotas
+                            possíveis e
                             itera sobre elas somando "manualmente" os pesos para encontrar o menor custo total.</p>
 
-                        <h4>B. A Simulação de "Cascata de Falhas"</h4>
-                        <p>Esta é a maior inovação do projeto. O algoritmo simula a <strong>Logística Reversa
+                        <h4 class="font-bold text-slate-700 mt-2">B. A Simulação de "Cascata de Falhas"</h4>
+                        <p class="text-sm">Esta é a maior inovação do projeto. O algoritmo simula a <strong>Logística
+                                Reversa
                                 Forçada</strong>. Quando uma rota falha (ex: BR-163 bloqueada), o sistema calcula:</p>
-                        <p class="bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 rounded-lg my-4 font-medium">
+                        <p
+                            class="bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 rounded-lg my-4 font-medium text-sm">
                             Custo Real = Custo da Rota Final + (Soma do Custo de Ida e Volta de todas as Rotas Falhas)
                         </p>
-                        <p>Isso demonstra o prejuízo real de um bloqueio: o custo do retorno à base antes de tentar uma
+                        <p class="text-sm">Isso demonstra o prejuízo real de um bloqueio: o custo do retorno à base
+                            antes de tentar uma
                             nova rota.</p>
 
-                        <!-- SEÇÃO DE REFERÊNCIAS ADICIONADA AQUI -->
-                        <div class="mt-12 pt-6 border-t border-gray-100 bg-blue-50 p-6 rounded-lg">
-                            <h3 class="text-gray-900 font-bold text-lg mb-4 flex items-center gap-2">
+                        <!-- REFERÊNCIAS -->
+                        <div class="mt-12 pt-6 border-t border-slate-100 bg-slate-50 p-6 rounded-lg">
+                            <h3 class="text-slate-900 font-bold text-lg mb-4 flex items-center gap-2">
                                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -360,15 +386,11 @@
                                 </svg>
                                 Fontes de Dados e Referências Bibliográficas
                             </h3>
-                            <p class="text-sm text-gray-600 mb-4">
-                                Para garantir a veracidade da simulação, os parâmetros de custo, distância e risco foram
-                                calibrados com base em dados oficiais do setor de logística brasileiro:
-                            </p>
-                            <ul class="text-sm text-gray-600 space-y-4 font-medium list-none pl-0">
+                            <ul class="text-sm text-slate-600 space-y-4 font-medium list-none pl-0">
                                 <li class="flex gap-3">
                                     <div class="min-w-[2rem] font-bold text-blue-700">[1]</div>
                                     <div>
-                                        <strong class="block text-gray-800">CONAB (Companhia Nacional de
+                                        <strong class="block text-slate-800">CONAB (Companhia Nacional de
                                             Abastecimento)</strong>
                                         Utilizado para definir a disparidade de preço entre as rotas Norte (R$ 180) e
                                         Sul (R$ 270), baseada no Boletim Logístico da Soja 2024.
@@ -377,273 +399,152 @@
                                 <li class="flex gap-3">
                                     <div class="min-w-[2rem] font-bold text-blue-700">[2]</div>
                                     <div>
-                                        <strong class="block text-gray-800">ESALQ-LOG (USP) / Sifreca</strong>
-                                        Base técnica para o cálculo do custo rodoviário por tonelada/km, considerando o
-                                        impacto do preço do diesel e pedágios na formação do frete.
+                                        <strong class="block text-slate-800">ESALQ-LOG (USP) / Sifreca</strong>
+                                        Base técnica para o cálculo do custo rodoviário por tonelada/km.
                                     </div>
                                 </li>
                                 <li class="flex gap-3">
                                     <div class="min-w-[2rem] font-bold text-blue-700">[3]</div>
                                     <div>
-                                        <strong class="block text-gray-800">CNT (Confederação Nacional do
+                                        <strong class="block text-slate-800">CNT (Confederação Nacional do
                                             Transporte)</strong>
-                                        Forneceu os dados sobre a qualidade da pavimentação da BR-163, justificando o
-                                        fator de risco "Crítico" e a alta probabilidade de bloqueios por chuva no
-                                        modelo.
+                                        Forneceu os dados sobre a qualidade da pavimentação da BR-163.
                                     </div>
                                 </li>
                                 <li class="flex gap-3">
                                     <div class="min-w-[2rem] font-bold text-blue-700">[4]</div>
                                     <div>
-                                        <strong class="block text-gray-800">EPE (Empresa de Pesquisa
+                                        <strong class="block text-slate-800">EPE (Empresa de Pesquisa
                                             Energética)</strong>
-                                        Utilizada para embasar a priorização do modal ferroviário (Ferronorte) no grafo,
-                                        devido à sua maior eficiência energética e menor custo variável.
+                                        Utilizada para embasar a priorização do modal ferroviário.
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </article>
                 </div>
+
             </div>
 
-            <!-- 
-                ================================================================
-                VIEW 1: CENÁRIO IDEAL (DASHBOARD RICO)
-                ================================================================
-            -->
-            <div id="view-1" class="view-content space-y-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-                    <!-- Coluna Esquerda: Vídeo (2/3) -->
-                    <div class="lg:col-span-2 flex flex-col gap-6">
-                        <div class="bg-white p-1 rounded-2xl shadow-sm border border-gray-200">
-                            <div class="bg-black rounded-xl overflow-hidden aspect-video relative">
-                                <div
-                                    class="absolute top-4 left-4 bg-green-500/90 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold z-10 flex items-center gap-2">
-                                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> LIVE FEED
-                                </div>
-                                <video class="w-full h-full object-cover" src="assets_front/cenario_1.mp4" autoplay loop
-                                    muted controls></video>
-                            </div>
-                        </div>
-                        <!-- KPI Rápido -->
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-                                <p class="text-xs text-gray-400 font-bold uppercase">Status da Entrega</p>
-                                <p class="text-lg font-bold text-green-600">Confirmada</p>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-                                <p class="text-xs text-gray-400 font-bold uppercase">Tempo Estimado</p>
-                                <p class="text-lg font-bold text-gray-800">14h 30m</p>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-                                <p class="text-xs text-gray-400 font-bold uppercase">Economia</p>
-                                <p class="text-lg font-bold text-blue-600">High</p>
-                            </div>
-                        </div>
+            <!-- VIEW 1: IDEAL -->
+            <div id="view-1" class="view-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white p-2 rounded-2xl shadow-lg border border-slate-200">
+                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_1.mp4"
+                            poster="../assets/cenario_1.png" autoplay loop muted playsinline controls></video>
                     </div>
-
-                    <!-- Coluna Direita: Telemetria & Logs (1/3) -->
                     <div class="flex flex-col gap-4">
-                        <!-- Painel de Dados -->
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                            <h3 class="text-sm font-bold text-gray-800 mb-6 flex items-center gap-2">
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                </svg>
-                                TELEMETRIA DA ROTA
-                            </h3>
-
-                            <div class="space-y-6">
-                                <div>
-                                    <div class="flex justify-between text-sm mb-2">
-                                        <span class="text-gray-500">Distância Percorrida</span>
-                                        <span class="font-bold text-gray-900">915 km</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2">
-                                        <div class="bg-blue-500 h-2 rounded-full shadow-lg shadow-blue-500/30"
-                                            style="width: 35%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between text-sm mb-2">
-                                        <span class="text-gray-500">Custo Operacional</span>
-                                        <span class="font-bold text-green-600">R$ 180,00</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2">
-                                        <div class="bg-green-500 h-2 rounded-full shadow-lg shadow-green-500/30"
-                                            style="width: 25%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between text-sm mb-2">
-                                        <span class="text-gray-500">Risco de Interrupção</span>
-                                        <span class="font-bold text-yellow-500">Moderado</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2">
-                                        <div class="bg-yellow-400 h-2 rounded-full" style="width: 45%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Terminal de Logs -->
                         <div
-                            class="bg-[#1E293B] text-gray-300 p-4 rounded-2xl shadow-lg flex-1 font-mono text-xs overflow-y-auto border border-gray-700 custom-scrollbar">
-                            <div class="flex items-center gap-2 mb-4 border-b border-gray-700 pb-2">
-                                <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                <span class="ml-auto text-[10px] text-gray-500">SYSTEM LOGS</span>
+                            class="bg-slate-900 text-green-400 p-4 rounded-xl shadow-lg font-mono text-xs h-full flex flex-col">
+                            <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-2">
+                                <span>TERMINAL_OUTPUT</span>
+                                <div class="flex gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                    <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                </div>
                             </div>
-                            <div class="space-y-2">
-                                <p><span class="text-blue-400">[14:00]</span> INFO: Route optimization started</p>
-                                <p><span class="text-blue-400">[14:00]</span> CALC: Evaluating 4 paths...</p>
-                                <p><span class="text-green-400">[14:01]</span> SUCCESS: Optimal path found (North)</p>
-                                <p><span class="text-gray-500">[14:02]</span> --------------------------------</p>
-                                <p><span class="text-blue-400">[14:05]</span> TRACK: Truck departed (Sorriso)</p>
-                                <p><span class="text-blue-400">[14:10]</span> TRACK: Arrived at Hub Sinop</p>
-                                <p><span class="text-blue-400">[14:15]</span> TRACK: Entering BR-163 (Paved)</p>
-                                <p><span class="text-green-400">[14:30]</span> SUCCESS: Delivery Confirmed</p>
-                                <p class="text-green-300 mt-2">>> SYSTEM STATUS: OPTIMAL <<< /p>
-                            </div>
+                            <div id="terminal-1" class="space-y-1 overflow-hidden"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 2: CONTINGÊNCIA (DASHBOARD) -->
-            <div id="view-2" class="view-content space-y-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-                    <div class="lg:col-span-2 bg-white p-2 rounded-xl shadow-sm border border-yellow-200">
-                        <div class="bg-black rounded-xl overflow-hidden aspect-video relative">
-                            <div
-                                class="absolute top-4 left-4 bg-yellow-500/90 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold z-10 flex items-center gap-2">
-                                <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> REROUTING
-                            </div>
-                            <video class="w-full h-full object-cover" src="assets_front/cenario_2.mp4" autoplay loop
-                                muted controls></video>
-                        </div>
+            <!-- VIEW 2: CONTINGÊNCIA -->
+            <div id="view-2" class="view-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white p-2 rounded-2xl shadow-lg border border-yellow-200">
+                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_2.mp4"
+                            poster="../assets/cenario_2.png" autoplay loop muted playsinline controls></video>
                     </div>
-                    <div class="flex flex-col gap-4">
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-4">Status de
-                                Contingência</h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between text-sm mb-1"><span>Acréscimo de Custo</span> <span
-                                            class="font-bold text-yellow-600">+50%</span></div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2">
-                                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 50%"></div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="bg-slate-900 text-yellow-400 p-4 rounded-xl shadow-lg font-mono text-xs h-full">
+                        <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-2">
+                            <span>ALERTS_LOG</span>
                         </div>
-                        <div
-                            class="bg-[#1E293B] text-yellow-300 p-4 rounded-2xl shadow-lg flex-1 font-mono text-xs overflow-y-auto border border-gray-700 custom-scrollbar">
-                            <p>[SYSTEM] Route calculation...</p>
-                            <p class="text-gray-500">> Trying North Route...</p>
-                            <p class="text-red-500">[!] ERROR: Road Blocked at Sinop</p>
-                            <p class="text-yellow-200">> Rerouting to South Corridor...</p>
-                            <p class="text-white">[SUCCESS] Delivered at Santos Port (Delayed)</p>
-                        </div>
+                        <div id="terminal-2" class="space-y-1"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 3: CRÍTICO (DASHBOARD) -->
-            <div id="view-3" class="view-content space-y-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-                    <div class="lg:col-span-2 bg-white p-2 rounded-xl shadow-sm border border-orange-200">
-                        <div class="bg-black rounded-xl overflow-hidden aspect-video relative">
-                            <div
-                                class="absolute top-4 left-4 bg-orange-500/90 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold z-10 flex items-center gap-2">
-                                <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> WARNING
-                            </div>
-                            <video class="w-full h-full object-cover" src="assets_front/cenario_3.mp4" autoplay loop
-                                muted controls></video>
-                        </div>
+            <!-- VIEW 3: CRÍTICO -->
+            <div id="view-3" class="view-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white p-2 rounded-2xl shadow-lg border border-orange-200">
+                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_3.mp4"
+                            poster="../assets/cenario_3.png" autoplay loop muted playsinline controls></video>
                     </div>
-                    <div class="flex flex-col gap-4">
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-                            <h3 class="text-xs font-bold text-orange-500 uppercase tracking-wide mb-4">Status Crítico
-                            </h3>
-                            <p class="text-sm text-gray-600">Uso de estradas não pavimentadas detectado. Velocidade
-                                média reduzida.</p>
+                    <div class="bg-slate-900 text-orange-400 p-4 rounded-xl shadow-lg font-mono text-xs h-full">
+                        <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-2">
+                            <span>CRITICAL_LOG</span>
                         </div>
-                        <div
-                            class="bg-[#1E293B] text-orange-300 p-4 rounded-2xl shadow-lg flex-1 font-mono text-xs overflow-y-auto border border-gray-700 custom-scrollbar">
-                            <p class="text-red-500">[!] BLOCK: BR-163 North (Rain)</p>
-                            <p class="text-red-500">[!] BLOCK: BR-364 South (Strike)</p>
-                            <p class="text-orange-300">> Calculating Emergency Path...</p>
-                            <p class="text-gray-500">> Selected: East Route (Dirt Road)</p>
-                        </div>
+                        <div id="terminal-3" class="space-y-1"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 4: COLAPSO (DASHBOARD) -->
-            <div id="view-4" class="view-content space-y-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-                    <!-- Coluna Vídeo -->
-                    <div class="lg:col-span-2 bg-white p-2 rounded-xl shadow-sm border border-red-200 relative">
-                        <div class="bg-black rounded-xl overflow-hidden aspect-video relative">
-                            <div
-                                class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold z-10 animate-pulse">
-                                CRITICAL FAILURE</div>
-                            <video class="w-full h-full object-cover" src="assets_front/cenario_4.mp4" autoplay loop
-                                muted controls></video>
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-4">
-                        <div class="bg-red-50 p-6 rounded-2xl shadow-sm border border-red-100">
-                            <h3 class="text-sm font-bold text-red-800 mb-4">IMPACTO DA CRISE</h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between text-sm mb-1"><span class="text-red-700">Custo
-                                            Total</span> <span class="font-bold text-red-900">R$ 1.500+</span></div>
-                                    <div class="w-full bg-red-200 rounded-full h-2">
-                                        <div class="bg-red-600 h-2 rounded-full" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                                <div class="text-xs text-red-600 mt-2 font-mono">
-                                    * Inclui 3x Logística Reversa
-                                </div>
-                            </div>
-                        </div>
+            <!-- VIEW 4: COLAPSO -->
+            <div id="view-4" class="view-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div
+                        class="lg:col-span-2 bg-red-50 p-2 rounded-2xl shadow-lg border border-red-200 relative overflow-hidden">
                         <div
-                            class="bg-[#1E293B] text-red-400 p-4 rounded-2xl shadow-lg flex-1 font-mono text-xs overflow-y-auto border border-red-900">
-                            <p>[SYSTEM] CRITICAL ALERT!</p>
-                            <p class="text-gray-500"> > Route 1 (North): BLOCKED</p>
-                            <p class="text-yellow-500"> > Backtracking...</p>
-                            <p class="text-gray-500"> > Route 2 (South): BLOCKED</p>
-                            <p class="text-yellow-500"> > Backtracking...</p>
-                            <p class="text-gray-500"> > Route 3 (East): BLOCKED</p>
-                            <p class="text-blue-400"> > Emergency Route (West) Activated</p>
-                            <p class="text-white bg-red-900/50 p-1 mt-2">>> SYSTEM INTEGRITY: COMPROMISED <<< /p>
+                            class="absolute inset-0 border-4 border-red-500/20 rounded-2xl animate-pulse pointer-events-none z-10">
                         </div>
+                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_4.mp4"
+                            poster="../assets/cenario_4.png" autoplay loop muted playsinline controls></video>
+                    </div>
+                    <div
+                        class="bg-slate-950 text-red-500 p-4 rounded-xl shadow-lg font-mono text-xs h-full border border-red-900/50">
+                        <div class="flex items-center justify-between border-b border-red-900 pb-2 mb-2">
+                            <span class="animate-pulse">SYSTEM_FAILURE</span>
+                        </div>
+                        <div id="terminal-4" class="space-y-1"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 5: DASHBOARD -->
-            <div id="view-5" class="view-content space-y-6">
-                <header>
-                    <h2 class="text-2xl font-bold text-gray-900">Dashboard Analítico</h2>
-                </header>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-                    <img class="w-full rounded-lg border border-gray-100" src="assets_front/dashboard.png"
-                        alt="Dashboard"
-                        onerror="this.src='https://placehold.co/1200x800/f4f6f9/2c3e50?text=Dashboard+Placeholder'">
+            <!-- VIEW 5: DASHBOARD INTERATIVO -->
+            <div id="view-5" class="view-content">
+                <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-200 h-full">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-slate-800">Análise Comparativa de Custos</h2>
+                        <!-- SELECTOR -->
+                        <select id="chartTypeSelector"
+                            class="bg-slate-100 border-none text-sm rounded-lg px-3 py-1 text-slate-600 font-bold cursor-pointer hover:bg-slate-200 transition ring-2 ring-transparent focus:ring-blue-500 outline-none">
+                            <option value="bar">Visualização: Barra</option>
+                            <option value="radar">Visualização: Radar</option>
+                        </select>
+                    </div>
+
+                    <!-- Container do Gráfico -->
+                    <div id="chart-container" class="w-full h-[400px]"></div>
+
+                    <!-- Legenda -->
+                    <div class="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-100 text-center">
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase font-bold">Norte</p>
+                            <p class="text-lg font-bold text-green-600">R$ 180</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase font-bold">Sul</p>
+                            <p class="text-lg font-bold text-yellow-600">R$ 350</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase font-bold">Leste</p>
+                            <p class="text-lg font-bold text-orange-600">R$ 580</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase font-bold">Oeste</p>
+                            <p class="text-lg font-bold text-red-600">R$ 770</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JS Externo -->
     <script src="script.js"></script>
 </body>
 
