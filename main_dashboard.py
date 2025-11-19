@@ -14,10 +14,10 @@ def filtrar_rota_por_inicio(todas_rotas, segundo_no):
 def calcular_custo_com_falhas(rede, caminho_final, caminhos_falhos_anteriores):
     """
     Calcula o custo total somando a rota final + (ida e volta das falhas).
+    Garante que o valor no Dashboard bata com o valor da Animação.
     """
     custo_desperdicio = 0
 
-    # Soma o prejuízo das tentativas anteriores (Ida + Volta)
     for falha in caminhos_falhos_anteriores:
         u, v = falha["caminho"][0], falha["caminho"][1]
         peso = rede.graph[u][v]["weight"]
@@ -47,7 +47,6 @@ def main():
         return
 
     # 3. Definição dos Cenários e Cálculo do Custo Real
-    # Custo Real = Rota Final + (Rotas Anteriores x 2)
 
     # Cenário 1: Só Norte (0 erros)
     custo_1 = rota_norte["custo"]
@@ -80,9 +79,7 @@ def main():
         color="#2C3E50",
     )
 
-    # Plota os 4 gráficos
-    # Usamos um truque: passamos um dicionário falso com o 'custo' já somado (com erros)
-    # para que a função core.py escreva o valor total no título.
+    # Plota os 4 gráficos usando um truque para exibir o custo total no título
 
     # Gráfico 1
     dados_fake_1 = {"caminho": rota_norte["caminho"], "custo": custo_1}
@@ -91,7 +88,7 @@ def main():
     )
 
     # Gráfico 2
-    dados_fake_2 = {"caminho": rota_sul["caminho"], "custo": custo_2}  # Custo acumulado
+    dados_fake_2 = {"caminho": rota_sul["caminho"], "custo": custo_2}
     rede.plotar_caminho_estatico_em_ax(
         axs[0, 1], dados_fake_2, cenarios_plot[1][1], cenarios_plot[1][3]
     )
