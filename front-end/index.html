@@ -203,14 +203,37 @@
                 <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-8 mb-10">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <div>
-                            <h2 class="text-3xl font-bold text-gray-900 mb-4">O Problema: "Custo Brasil"</h2>
-                            <article class="prose prose-lg max-w-none prose-blue text-gray-600">
-                                <p>O Brasil é um líder mundial na produção de soja, mas enfrenta um desafio geográfico
-                                    colossal: o <strong>"Cinturão da Soja"</strong> (Mato Grosso) está isolado no centro
-                                    do país, a mais de 1.500 km dos principais portos.</p>
-                                <p>Nossas simulações focam na <strong>vulnerabilidade da malha viária</strong>. Rotas
-                                    mais curtas, como a BR-163 (Arco Norte), são reféns de condições climáticas e falta
-                                    de manutenção, criando um risco financeiro imenso.</p>
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                O Contexto: Por que a Logística Brasileira é um Desafio?
+                            </h2>
+                            <article class="prose prose-indigo max-w-none text-gray-600 leading-relaxed text-justify">
+                                <p>O Brasil é uma potência agroexportadora, mas enfrenta um desafio geográfico
+                                    continental. O <strong>"Cinturão da Soja"</strong>, localizado no Mato Grosso, está
+                                    isolado no centro da América do Sul, a mais de <strong>1.500 km</strong> dos
+                                    principais portos de escoamento. Essa distância cria o famoso "Custo Brasil", onde o
+                                    frete pode consumir até 30% da receita do produtor.</p>
+
+                                <h3 class="text-gray-800 font-bold text-lg mt-6 mb-2 border-l-4 border-red-500 pl-3">O
+                                    Problema Central: A Dependência Rodoviária</h3>
+                                <p>Diferente de concorrentes como os EUA (que usam hidrovias), o Brasil depende
+                                    majoritariamente de caminhões. Isso gera vulnerabilidade crítica:</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Malha Viária Precária:</strong> Estradas como a BR-163 no Pará, embora
+                                        essenciais, atravessam regiões de floresta com chuvas intensas, causando
+                                        atoleiros frequentes.</li>
+                                    <li><strong>Falta de Redundância:</strong> Em muitas regiões, existe apenas
+                                        <strong>uma</strong> estrada viável. Se uma ponte cai ou ocorre um protesto, não
+                                        há "caminho alternativo" próximo.
+                                    </li>
+                                    <li><strong>Custo de Interrupção:</strong> Quando uma via trava, a carga não apenas
+                                        "para". Ela precisa retornar centenas de quilômetros para buscar outra rota,
+                                        duplicando o custo.</li>
+                                </ul>
                             </article>
                         </div>
                         <div>
@@ -570,7 +593,8 @@
                             <div
                                 class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded text-xs font-bold z-10 animate-pulse">
                                 CRITICAL FAILURE</div>
-                            controls></video>
+                            <video class="w-full h-full object-cover" src="assets_front/cenario_4.mp4" autoplay loop
+                                muted controls></video>
                         </div>
                     </div>
                     <div class="flex flex-col gap-4">
