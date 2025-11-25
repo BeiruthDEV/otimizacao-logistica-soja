@@ -1,0 +1,170 @@
+{
+    "meta": {
+        "version": "4.0",
+        "description": "Malha Logística com Probabilidades de Risco"
+    },
+    "nodes": {
+        "Miritituba_PA": [
+            0,
+            9
+        ],
+        "Sinop_MT": [
+            0,
+            5
+        ],
+        "Sorriso_MT": [
+            0,
+            2.5
+        ],
+        "Campo_Novo_MT": [
+            -4,
+            2.5
+        ],
+        "Agua_Boa_MT": [
+            4,
+            2.5
+        ],
+        "Cuiaba_MT": [
+            0,
+            -0.5
+        ],
+        "Barra_Garcas_MT": [
+            5,
+            -1
+        ],
+        "Rondonopolis_MT": [
+            0,
+            -3
+        ],
+        "Uberaba_MG": [
+            4,
+            -5.5
+        ],
+        "Santos_SP": [
+            5,
+            -9
+        ]
+    },
+    "edges": [
+        {
+            "u": "Sorriso_MT",
+            "v": "Sinop_MT",
+            "weight": 40,
+            "distance": 85,
+            "label": "BR-163",
+            "info": "Pavimentada",
+            "type": "road",
+            "failure_prob": 0.05
+        },
+        {
+            "u": "Sinop_MT",
+            "v": "Miritituba_PA",
+            "weight": 140,
+            "distance": 830,
+            "label": "BR-163 (Norte)",
+            "info": "Logística Crítica",
+            "type": "road",
+            "failure_prob": 0.30
+        },
+        {
+            "u": "Sorriso_MT",
+            "v": "Cuiaba_MT",
+            "weight": 60,
+            "distance": 420,
+            "label": "BR-163 (Sul)",
+            "info": "Concessionada",
+            "type": "road",
+            "failure_prob": 0.02
+        },
+        {
+            "u": "Cuiaba_MT",
+            "v": "Rondonopolis_MT",
+            "weight": 50,
+            "distance": 210,
+            "label": "BR-364",
+            "info": "Alto Fluxo",
+            "type": "road",
+            "failure_prob": 0.05
+        },
+        {
+            "u": "Rondonopolis_MT",
+            "v": "Santos_SP",
+            "weight": 160,
+            "distance": 1400,
+            "label": "Ferronorte",
+            "info": "MALHA FERROVIÁRIA",
+            "type": "rail",
+            "failure_prob": 0.01
+        },
+        {
+            "u": "Rondonopolis_MT",
+            "v": "Uberaba_MG",
+            "weight": 100,
+            "distance": 900,
+            "label": "BR-364",
+            "info": "Pista Simples",
+            "type": "road",
+            "failure_prob": 0.10
+        },
+        {
+            "u": "Uberaba_MG",
+            "v": "Santos_SP",
+            "weight": 90,
+            "distance": 490,
+            "label": "SP-330",
+            "info": "Duplicada",
+            "type": "road",
+            "failure_prob": 0.01
+        },
+        {
+            "u": "Sorriso_MT",
+            "v": "Agua_Boa_MT",
+            "weight": 90,
+            "distance": 450,
+            "label": "BR-242",
+            "info": "Não Pavimentada",
+            "type": "road",
+            "failure_prob": 0.25
+        },
+        {
+            "u": "Agua_Boa_MT",
+            "v": "Barra_Garcas_MT",
+            "weight": 80,
+            "distance": 380,
+            "label": "BR-158",
+            "info": "Precária",
+            "type": "road",
+            "failure_prob": 0.20
+        },
+        {
+            "u": "Barra_Garcas_MT",
+            "v": "Uberaba_MG",
+            "weight": 120,
+            "distance": 750,
+            "label": "BR-050",
+            "info": "Regular",
+            "type": "road",
+            "failure_prob": 0.05
+        },
+        {
+            "u": "Sorriso_MT",
+            "v": "Campo_Novo_MT",
+            "weight": 70,
+            "distance": 300,
+            "label": "MT-235",
+            "info": "Estadual",
+            "type": "road",
+            "failure_prob": 0.10
+        },
+        {
+            "u": "Campo_Novo_MT",
+            "v": "Cuiaba_MT",
+            "weight": 110,
+            "distance": 550,
+            "label": "MT-010",
+            "info": "Rota de Fuga",
+            "type": "road",
+            "failure_prob": 0.15
+        }
+    ]
+}
