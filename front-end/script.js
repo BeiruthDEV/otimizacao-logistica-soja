@@ -1,4 +1,4 @@
-// 1. Gerenciamento de Abas (com persistência e carregamento de gráficos)
+// 1. Gerenciamento de Abas
 function showView(viewId, clickedButton) {
     // Esconde tudo
     document.querySelectorAll('.view-content').forEach(el => el.style.display = 'none');
@@ -12,7 +12,7 @@ function showView(viewId, clickedButton) {
     if (clickedButton) {
         clickedButton.classList.add('active');
     } else {
-        // Tenta achar o botão automaticamente se vier de um refresh
+        // Tenta achar o botão automaticamente (ex: refresh)
         const autoBtn = document.querySelector(`button[onclick*="${viewId}"]`);
         if (autoBtn) autoBtn.classList.add('active');
     }
@@ -22,20 +22,14 @@ function showView(viewId, clickedButton) {
         renderChart();
     }
 
-    // Inicia animação de terminal se for uma das abas de vídeo
-    if (viewId.includes('view-') && viewId !== 'view-0' && viewId !== 'view-5') {
-        const scenarioId = viewId.split('-')[1];
-        runTerminalEffect(scenarioId);
-    }
-
     localStorage.setItem('lastView', viewId);
 }
 
-// 2. Gráfico ApexCharts (O "Wow Factor")
+// 2. Gráfico ApexCharts (Matriz Comparativa)
 let chartInstance = null;
 
 function renderChart() {
-    if (chartInstance) return; // Já renderizou para não duplicar
+    if (chartInstance) return;
 
     var options = {
         series: [{
@@ -43,47 +37,50 @@ function renderChart() {
             data: [180, 350, 580, 770]
         }],
         chart: {
-            type: 'bar', // Padrão inicial
-            height: 350,
+            type: 'bar',
+            height: '100%',
             fontFamily: 'Inter, sans-serif',
             toolbar: { show: false },
             animations: { enabled: true, easing: 'easeinout', speed: 800 }
         },
         plotOptions: {
             bar: {
-                borderRadius: 8,
-                columnWidth: '50%',
-                distributed: true, // Cores diferentes por barra
+                borderRadius: 6,
+                columnWidth: '40%',
+                distributed: true,
             }
         },
-        colors: ['#22c55e', '#eab308', '#f97316', '#dc2626'], // Verde, Amarelo, Laranja, Vermelho
+        colors: ['#10B981', '#EAB308', '#F97316', '#EF4444'], // Cores alinhadas com o Python (Verde, Amarelo, Laranja, Vermelho)
         dataLabels: {
             enabled: true,
             formatter: function (val) { return "R$ " + val; },
-            style: { fontSize: '14px', colors: ["#334155"] },
+            style: { fontSize: '14px', colors: ["#334155"], fontWeight: 'bold' },
             offsetY: -20
         },
         xaxis: {
-            categories: ['1. Ideal (Norte)', '2. Contingência (Sul)', '3. Crítico (Leste)', '4. Colapso (Oeste)'],
-            labels: { style: { fontSize: '12px', fontWeight: 600 } }
+            categories: ['1. Ideal', '2. Contingência', '3. Crítico', '4. Colapso'],
+            labels: { style: { fontSize: '12px', fontWeight: 600, colors: '#64748B' } },
+            axisBorder: { show: false },
+            axisTicks: { show: false }
         },
         yaxis: {
-            title: { text: 'Custo (R$)' }
+            title: { text: 'Custo (R$)' },
+            labels: { style: { colors: '#64748B' } }
         },
         grid: {
-            borderColor: '#f1f5f9',
+            borderColor: '#F1F5F9',
             strokeDashArray: 4,
         },
         tooltip: {
             theme: 'dark',
             y: { formatter: function (val) { return "R$ " + val + " / ton" } }
-        }
+        },
+        legend: { show: false }
     };
 
     chartInstance = new ApexCharts(document.querySelector("#chart-container"), options);
     chartInstance.render();
 
-    // Adiciona o listener para o seletor de tipo de gráfico
     const selector = document.getElementById('chartTypeSelector');
     if (selector) {
         selector.addEventListener('change', function (e) {
@@ -92,57 +89,13 @@ function renderChart() {
     }
 }
 
-// Função para trocar entre Barra e Radar
 function updateChartType(type) {
     if (!chartInstance) return;
-
     chartInstance.updateOptions({
-        chart: {
-            type: type
-        },
-        // Ajustes específicos para ficar bonito no Radar também
-        plotOptions: {
-            bar: { distributed: type === 'bar' }
-        },
-        xaxis: {
-            labels: { show: true } // Garante labels
-        }
+        chart: { type: type },
+        plotOptions: { bar: { distributed: type === 'bar' } },
+        xaxis: { labels: { show: true } }
     });
-}
-
-// 3. Efeito de Digitação no Terminal (Hacker Style)
-const logs = {
-    '1': ["> INICIANDO SISTEMA...", "> Rota Norte: DETECTADA", "> Verificando Clima... OK", "> Status BR-163: LIVRE", "> Calculando Frete... R$ 180", "[SUCESSO] Entrega Confirmada."],
-    '2': ["> INICIANDO SISTEMA...", "> Rota Norte: FALHA (Bloqueio)", "! ALERTA: Chuvas Intensas", "> Redirecionando p/ SUL...", "> Custo Adicional: +50%", "[ATENÇÃO] Entrega com Atraso."],
-    '3': ["> INICIANDO SISTEMA...", "! FALHA CRÍTICA: Norte (X)", "! FALHA CRÍTICA: Sul (X)", "> Buscando Rotas Alternativas...", "> Rota Leste (Terra): ATIVA", "[PERIGO] Dano ao Veículo Alto."],
-    '4': ["! SYSTEM FAILURE !", "! Rota Norte: BLOCKED", "! Rota Sul: BLOCKED", "! Rota Leste: BLOCKED", ">>> ATIVANDO ROTA DE FUGA OESTE", ">>> Custo: EXORBITANTE", "[COLAPSO] Logística Reversa x3"]
-};
-
-function runTerminalEffect(id) {
-    const container = document.getElementById(`terminal-${id}`);
-    if (!container || container.dataset.typed === "true") return; // Já digitou
-
-    container.innerHTML = ''; // Limpa
-    const lines = logs[id];
-    let i = 0;
-
-    function typeLine() {
-        if (i < lines.length) {
-            const p = document.createElement('div');
-            p.textContent = lines[i];
-            p.className = "opacity-0 transition-opacity duration-300"; // Fade in
-            container.appendChild(p);
-
-            // Força reflow para animação funcionar
-            setTimeout(() => p.classList.remove('opacity-0'), 50);
-
-            i++;
-            setTimeout(typeLine, 600); // Velocidade da digitação
-        } else {
-            container.dataset.typed = "true"; // Marca como feito
-        }
-    }
-    typeLine();
 }
 
 // Init

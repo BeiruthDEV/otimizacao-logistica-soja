@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGRO LOGISTICS v15 - Enterprise Suite</title>
+    <title>AGRO LOGISTICS v9.0 - Enterprise BI</title>
 
-    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,15 +19,12 @@
         }
     </script>
 
-    <!-- ApexCharts -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-    <!-- Fontes -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
-    <!-- CSS Externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -36,14 +32,12 @@
 
     <div class="flex h-screen">
 
-        <!-- MENU LATERAL -->
         <nav
             class="w-72 bg-slate-900 flex flex-col shadow-2xl z-20 text-slate-300 transition-all duration-300 flex-shrink-0">
 
-            <!-- LOGO AREA (Ícone de Caminhão) -->
             <div class="p-6 border-b border-slate-800 flex items-center gap-3">
                 <div
-                    class="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-lg shadow-lg shadow-blue-900/50 text-white">
+                    class="bg-gradient-to-br from-emerald-600 to-teal-600 p-2 rounded-lg shadow-lg shadow-emerald-900/50 text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -52,13 +46,13 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="font-bold text-white text-lg tracking-tight">AGRO<span class="text-blue-500">LOG</span>
+                    <h1 class="font-bold text-white text-lg tracking-tight">AGRO<span
+                            class="text-emerald-500">LOG</span>
                     </h1>
-                    <p class="text-[10px] text-slate-500 font-semibold tracking-widest uppercase">Enterprise v15.0</p>
+                    <p class="text-[10px] text-slate-500 font-semibold tracking-widest uppercase">Enterprise v9.0</p>
                 </div>
             </div>
 
-            <!-- Navegação -->
             <ul class="flex-1 overflow-y-auto py-6 space-y-1 px-3">
                 <li>
                     <button onclick="showView('view-0', this)"
@@ -66,22 +60,26 @@
                         <svg class="w-5 h-5 mr-3 text-slate-500 group-hover:text-white transition-colors" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
-                        Visão Geral (Executive)
+                        Visão Geral (Original)
                     </button>
                 </li>
 
-                <li class="mt-6 mb-2 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Simulações em
-                    Tempo Real</li>
+                <li class="mt-6 mb-2 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">App Python
+                    (Live)</li>
 
                 <li>
                     <button onclick="showView('view-1', this)"
-                        class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-green-400 transition-all duration-200 border-l-3 border-transparent group">
-                        <div class="w-2 h-2 rounded-full bg-green-500 mr-3 shadow-[0_0_10px_rgba(34,197,94,0.6)]"></div>
-                        1. Rota Ideal (Norte)
+                        class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-blue-400 transition-all duration-200 border-l-3 border-transparent group">
+                        <div class="w-2 h-2 rounded-full bg-blue-500 mr-3 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></div>
+                        1. Simulação & Clima ⛈️
                     </button>
                 </li>
+
+                <li class="mt-6 mb-2 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Histórico de
+                    Crises</li>
+
                 <li>
                     <button onclick="showView('view-2', this)"
                         class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-yellow-400 transition-all duration-200 border-l-3 border-transparent group">
@@ -106,7 +104,7 @@
                     </button>
                 </li>
 
-                <li class="mt-6 mb-2 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Analytics</li>
+                <li class="mt-6 mb-2 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Relatórios</li>
                 <li>
                     <button onclick="showView('view-5', this)"
                         class="menu-item w-full flex items-center px-4 py-3 text-sm font-medium rounded-r-lg hover:bg-slate-800 hover:text-indigo-400 transition-all duration-200 border-l-3 border-transparent group">
@@ -115,32 +113,28 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
-                        Dashboard Financeiro
+                        Matriz de Custos
                     </button>
                 </li>
             </ul>
 
-            <!-- User Profile -->
             <div class="p-4 border-t border-slate-800">
                 <div class="bg-slate-800/50 rounded-lg p-3 flex items-center gap-3 border border-slate-700">
                     <div
-                        class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold text-xs shadow-lg">
+                        class="h-9 w-9 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold text-xs shadow-lg">
                         MB</div>
                     <div>
                         <p class="text-xs font-bold text-slate-200">Matheus Beiruth</p>
-                        <p class="text-[10px] text-slate-500">System Admin</p>
+                        <p class="text-[10px] text-slate-500">Head de Logística</p>
                     </div>
                 </div>
             </div>
         </nav>
 
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 h-full overflow-y-auto bg-[#F1F5F9] p-6 lg:p-10 relative">
+        <main class="flex-1 h-full overflow-y-auto bg-[#F8FAFC] p-6 lg:p-10 relative">
 
-            <!-- Background Decoration -->
             <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-slate-200 to-transparent -z-10"></div>
 
-            <!-- Header -->
             <div class="flex justify-between items-end mb-8">
                 <div>
                     <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Painel de Controle</h2>
@@ -149,15 +143,13 @@
                 <div class="flex gap-2">
                     <span
                         class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 flex items-center gap-2 shadow-sm">
-                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> SISTEMA ONLINE
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> SISTEMA ONLINE
                     </span>
                 </div>
             </div>
 
-            <!-- VIEW 0: VISÃO GERAL COMPLETA -->
             <div id="view-0" class="view-content space-y-8">
 
-                <!-- KPIs -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div
                         class="glass-panel rounded-2xl p-6 shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
@@ -220,7 +212,6 @@
                     </div>
                 </div>
 
-                <!-- SEÇÃO 1: O CONTEXTO -->
                 <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-8 mb-10">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <div>
@@ -262,7 +253,6 @@
                     </div>
                 </div>
 
-                <!-- SEÇÃO 2: ANÁLISE DE MERCADO -->
                 <div class="bg-slate-50 border border-slate-200 rounded-xl shadow-sm p-8 mb-10">
                     <h2 class="text-2xl font-bold text-indigo-900 mb-4 flex items-center gap-2">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,7 +282,6 @@
                     </div>
                 </div>
 
-                <!-- SEÇÃO 3: O DILEMA ESTRATÉGICO -->
                 <h2 class="text-2xl font-bold text-slate-800 mb-6">O Dilema Estratégico: Norte vs. Sul</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
                     <div
@@ -335,7 +324,6 @@
                     </div>
                 </div>
 
-                <!-- SEÇÃO 4: METODOLOGIA E REFERÊNCIAS -->
                 <div class="bg-white border border-slate-200 rounded-xl shadow-lg p-8">
                     <article class="prose max-w-none text-slate-600">
                         <h2 class="text-slate-800 text-xl font-bold mb-4">Nossa Solução: Teoria dos Grafos Aplicada</h2>
@@ -376,7 +364,6 @@
                             antes de tentar uma
                             nova rota.</p>
 
-                        <!-- REFERÊNCIAS -->
                         <div class="mt-12 pt-6 border-t border-slate-100 bg-slate-50 p-6 rounded-lg">
                             <h3 class="text-slate-900 font-bold text-lg mb-4 flex items-center gap-2">
                                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor"
@@ -426,125 +413,170 @@
 
             </div>
 
-            <!-- VIEW 1: IDEAL -->
-            <div id="view-1" class="view-content">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2 bg-white p-2 rounded-2xl shadow-lg border border-slate-200">
-                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_1.mp4"
-                            poster="../assets/cenario_1.png" autoplay loop muted playsinline controls></video>
-                    </div>
-                    <div class="flex flex-col gap-4">
+            <div id="view-1" class="view-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <h2 class="text-3xl font-bold text-slate-800 tracking-tight">1. Simulação Operacional & Clima ⛈️
+                    </h2>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">Aplicação
+                        Desktop</span>
+                </div>
+
+                <p class="text-slate-500">
+                    O motor principal do sistema roda localmente via Python/Matplotlib para garantir performance máxima
+                    na renderização do grafo dinâmico.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div
+                        class="p-6 bg-white border border-blue-200 rounded-xl shadow-lg h-full hover:shadow-xl transition-shadow">
                         <div
-                            class="bg-slate-900 text-green-400 p-4 rounded-xl shadow-lg font-mono text-xs h-full flex flex-col">
-                            <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-2">
-                                <span>TERMINAL_OUTPUT</span>
-                                <div class="flex gap-1">
-                                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                                    <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                </div>
+                            class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Mapa Operacional</h3>
+                        <p class="text-sm text-slate-600 mb-4">
+                            Interface visual limpa com "Rota Fantasma" (Ghost Path) que mostra o caminho original quando
+                            desvios ocorrem. Clique nas arestas para bloquear/desbloquear estradas.
+                        </p>
+                    </div>
+
+                    <div
+                        class="p-6 bg-white border border-teal-200 rounded-xl shadow-lg h-full hover:shadow-xl transition-shadow">
+                        <div
+                            class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mb-4 text-teal-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-teal-700 mb-2">Modo Clima Dinâmico</h3>
+                        <p class="text-sm text-slate-600 mb-4">
+                            Simule tempestades em tempo real. O sistema aumenta drasticamente o custo e risco em
+                            estradas de terra (BR-242/158), forçando o recálculo imediato da rota.
+                        </p>
+                        <div
+                            class="mt-auto inline-block bg-teal-50 text-teal-700 px-2 py-1 rounded text-xs font-bold border border-teal-100">
+                            Botão: CLIMA ⛈️
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-slate-800 rounded-xl shadow-lg h-full lg:col-span-1 text-white">
+                        <h3 class="text-xl font-bold text-emerald-400 mb-4">Como Iniciar</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase font-bold mb-1">1. Terminal</p>
+                                <code
+                                    class="block bg-black/30 p-3 rounded font-mono text-sm text-emerald-300">$ python main.py</code>
                             </div>
-                            <div id="terminal-1" class="space-y-1 overflow-hidden"></div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase font-bold mb-1">2. Funcionalidades</p>
+                                <ul class="text-sm text-slate-300 space-y-1 list-disc pl-4">
+                                    <li>Clique no mapa p/ Bloquear</li>
+                                    <li>Botão <strong>CLIMA</strong> p/ Chuva</li>
+                                    <li>Botão <strong>RESET</strong> p/ Limpar</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 2: CONTINGÊNCIA -->
             <div id="view-2" class="view-content">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2 bg-white p-2 rounded-2xl shadow-lg border border-yellow-200">
-                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_2.mp4"
+                <div class="p-6 bg-white border border-slate-200 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-800">2. Cenário Histórico: Contingência</h2>
+                            <p class="text-slate-500 text-sm">Falha no Arco Norte (Miritituba) -> Desvio para Santos.
+                            </p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-bold text-slate-400 uppercase">Custo Real</p>
+                            <p class="text-xl font-bold text-yellow-600">R$ 350.00 / ton</p>
+                        </div>
+                    </div>
+
+                    <div class="aspect-video bg-slate-900 rounded-lg overflow-hidden relative shadow-inner">
+                        <video class="w-full h-full object-contain" src="assets_front/cenario_2.mp4"
                             poster="../assets/cenario_2.png" autoplay loop muted playsinline controls></video>
                     </div>
-                    <div class="bg-slate-900 text-yellow-400 p-4 rounded-xl shadow-lg font-mono text-xs h-full">
-                        <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-2">
-                            <span>ALERTS_LOG</span>
-                        </div>
-                        <div id="terminal-2" class="space-y-1"></div>
+
+                    <div class="mt-6 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-sm text-slate-700 mb-2">Análise Técnica:</h4>
+                        <p class="text-xs text-slate-600">
+                            Este cenário demonstra a falta de redundância no Norte. Ao perder a BR-163, o caminhão
+                            precisa percorrer mais de 2.000km até Santos, aumentando o custo em quase 100% comparado ao
+                            ideal.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 3: CRÍTICO -->
             <div id="view-3" class="view-content">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2 bg-white p-2 rounded-2xl shadow-lg border border-orange-200">
-                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_3.mp4"
+                <div class="p-6 bg-white border border-slate-200 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-800">3. Cenário Histórico: Crítico</h2>
+                            <p class="text-slate-500 text-sm">Colapso Norte e Sul. Uso da rota transversal Leste
+                                (Terra).</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-bold text-slate-400 uppercase">Custo Real</p>
+                            <p class="text-xl font-bold text-orange-600">R$ 580.00 / ton</p>
+                        </div>
+                    </div>
+
+                    <div class="aspect-video bg-slate-900 rounded-lg overflow-hidden relative shadow-inner">
+                        <video class="w-full h-full object-contain" src="assets_front/cenario_3.mp4"
                             poster="../assets/cenario_3.png" autoplay loop muted playsinline controls></video>
                     </div>
-                    <div class="bg-slate-900 text-orange-400 p-4 rounded-xl shadow-lg font-mono text-xs h-full">
-                        <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-2">
-                            <span>CRITICAL_LOG</span>
-                        </div>
-                        <div id="terminal-3" class="space-y-1"></div>
-                    </div>
                 </div>
             </div>
 
-            <!-- VIEW 4: COLAPSO -->
             <div id="view-4" class="view-content">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div
-                        class="lg:col-span-2 bg-red-50 p-2 rounded-2xl shadow-lg border border-red-200 relative overflow-hidden">
-                        <div
-                            class="absolute inset-0 border-4 border-red-500/20 rounded-2xl animate-pulse pointer-events-none z-10">
+                <div class="p-6 bg-white border border-red-100 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-red-800">4. Cenário Histórico: Colapso Total</h2>
+                            <p class="text-red-600 text-sm">Logística Reversa Forçada (Ida e Volta sem sucesso).</p>
                         </div>
-                        <video class="w-full h-full object-cover rounded-xl" src="assets_front/cenario_4.mp4"
+                        <div class="text-right">
+                            <p class="text-xs font-bold text-red-400 uppercase">Custo Real</p>
+                            <p class="text-xl font-bold text-red-700">R$ 770.00 / ton</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="aspect-video bg-slate-900 rounded-lg overflow-hidden relative shadow-inner border-2 border-red-500/30">
+                        <div
+                            class="absolute top-4 right-4 z-10 animate-pulse px-3 py-1 bg-red-600 text-white text-xs font-bold rounded">
+                            SYSTEM FAILURE</div>
+                        <video class="w-full h-full object-contain" src="assets_front/cenario_4.mp4"
                             poster="../assets/cenario_4.png" autoplay loop muted playsinline controls></video>
                     </div>
-                    <div
-                        class="bg-slate-950 text-red-500 p-4 rounded-xl shadow-lg font-mono text-xs h-full border border-red-900/50">
-                        <div class="flex items-center justify-between border-b border-red-900 pb-2 mb-2">
-                            <span class="animate-pulse">SYSTEM_FAILURE</span>
-                        </div>
-                        <div id="terminal-4" class="space-y-1"></div>
-                    </div>
                 </div>
             </div>
 
-            <!-- VIEW 5: DASHBOARD INTERATIVO -->
             <div id="view-5" class="view-content">
-                <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-200 h-full">
+                <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-200 h-full flex flex-col">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-xl font-bold text-slate-800">Análise Comparativa de Custos</h2>
-                        <!-- SELECTOR -->
+                        <h2 class="text-xl font-bold text-slate-800">Matriz Comparativa de Custos</h2>
                         <select id="chartTypeSelector"
-                            class="bg-slate-100 border-none text-sm rounded-lg px-3 py-1 text-slate-600 font-bold cursor-pointer hover:bg-slate-200 transition ring-2 ring-transparent focus:ring-blue-500 outline-none">
+                            class="bg-slate-100 border-none text-sm rounded-lg px-3 py-1 font-bold text-slate-600 outline-none cursor-pointer">
                             <option value="bar">Visualização: Barra</option>
                             <option value="radar">Visualização: Radar</option>
                         </select>
                     </div>
-
-                    <!-- Container do Gráfico -->
-                    <div id="chart-container" class="w-full h-[400px]"></div>
-
-                    <!-- Legenda -->
-                    <div class="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-100 text-center">
-                        <div>
-                            <p class="text-xs text-slate-400 uppercase font-bold">Norte</p>
-                            <p class="text-lg font-bold text-green-600">R$ 180</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-400 uppercase font-bold">Sul</p>
-                            <p class="text-lg font-bold text-yellow-600">R$ 350</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-400 uppercase font-bold">Leste</p>
-                            <p class="text-lg font-bold text-orange-600">R$ 580</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-400 uppercase font-bold">Oeste</p>
-                            <p class="text-lg font-bold text-red-600">R$ 770</p>
-                        </div>
-                    </div>
+                    <div id="chart-container" class="w-full flex-1 min-h-[400px]"></div>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- JS Externo -->
     <script src="script.js"></script>
 </body>
 
