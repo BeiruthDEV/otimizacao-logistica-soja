@@ -131,14 +131,5 @@ pip install -r requirements.txt
 ```bash
 python main.py
   ```
-
-Para ver o dashboard comparativo (Relatório):
-
-```bash
-
-python main_dashboard.py
-
-```
-
 ### 📝 Licença
 Distribuído sob a licença MIT. Veja LICENSE para mais informações.
